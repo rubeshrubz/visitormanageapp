@@ -3,10 +3,14 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={styles.container}>
+      <Text>LoginScreen</Text>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  }
+})
