@@ -3,7 +3,7 @@ import {View, Dimensions, StyleSheet,Image} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import NotificationPopup from 'react-native-push-notification-popup';
 import {EventRegister} from 'react-native-event-listeners';
-import TextLabel from '../Components/TextLabel';
+import TextLabel from '../components/TextLabel';
 // import {Icon} from '../Components/Icon';
 const width = Dimensions.get('window').width;
 function CustomNotification(props) {

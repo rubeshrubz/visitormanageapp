@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import InputText from '../components/InputText';
 import {Backbutton} from '../components/headerbackbutton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 export default function VisitorDetailsScreen() {
@@ -18,6 +19,27 @@ export default function VisitorDetailsScreen() {
   const [meet, setmeet] = React.useState('');
   const [comapny, setcompany] = React.useState('');
   const [intime, setintime] = React.useState('');
+  const [demo, setdemo] = useState('');
+  // const asyncc = '@MySuperStore:key'
+  // var retrieveData = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem(asyncc);
+  //     if (value !== null) {
+  //       // We have data!!
+  //       console.log(value);
+  //     }
+  //     setdemo(value)
+  //   } catch (error) {
+  //     // Error retrieving data
+  //     alert('hiiii....')
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (!demo) {
+  //     retrieveData();
+  //   }
+  // }, [demo])
 
   return (
     <SafeAreaView style={styles.container}>

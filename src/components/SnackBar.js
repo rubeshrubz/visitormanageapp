@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,15 +7,15 @@ import {
   Animated,
   TextInput,
 } from 'react-native';
-import {themesColor} from '../Utils/themes';
+import {themesColor} from '../global/themes';
 import {EventRegister} from 'react-native-event-listeners';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 function SnackBar(props) {
   const animatedValue = new Animated.Value(100);
-  const textref = React.useRef();
-  const snakcBarstyle = React.useRef();
-  React.useEffect(() => {
+  const textref = useRef();
+  const snakcBarstyle = useRef();
+  useEffect(() => {
     let open = EventRegister.addEventListener(
       global.event.openSnackbar,
       data => {

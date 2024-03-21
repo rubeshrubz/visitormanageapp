@@ -1,6 +1,6 @@
-import {EventRegister} from 'react-native-event-listeners';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { EventRegister } from "react-native-event-listeners";
+import {Animated} from "react-native";
+import {AsyncStorage} from "react-native";
 export default class Functions {
   static instance = null;
 
@@ -16,7 +16,7 @@ export default class Functions {
     return this.instance;
   }
 
-  ValidateEmail(mail: string) {
+  ValidateEmail(mail) {
     var mailformat =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (mail.match(mailformat)) {
@@ -25,7 +25,7 @@ export default class Functions {
     return true;
   }
 
-  ValidateText(text: string) {
+  ValidateText(text) {
     var textformat = /^(?:[A-Za-z]+|\d+)$/.test(value)
       ? 'block number'
       : 'block letter';
@@ -34,49 +34,102 @@ export default class Functions {
     }
     return true;
   }
-  textOnlyvalidate(evt: string) {
+  textOnlyvalidate(evt) {
     var text = /^[a-zA-Z ]*$/;
     if (evt.match(text)) {
       return false;
     }
     return true;
   }
-  PasswordValidate(evt: string){
-    var text = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W])[\w\W]{8,}$/;
+  PasswordValidate(evt){
+    var text = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$/;
     if(evt.match(text)){
       return false;
     }
     return true
   }
-  
+  startShake(shakeAnimation) {
+    Animated.sequence([
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -0,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }
   /**
    * Determine the type
    * @param value
    * @returns {typeof}
    */
-  isTypeOf(value: null) {
+  isTypeOf(value) {
     if (Array.isArray(value)) return 'array';
     return value != null ? typeof value : null;
   }
-  async setDetails(key: string,string: string){
+  async setDetails(key,string){
     try {
       await AsyncStorage.setItem(key, string)
       console.log("hi==>",'Data successfully saved',)
     } catch (e) {
       alert('Failed to save the data to the storage')
+   
   }
+  
   }
 
   async clearDetails(){
+  
     AsyncStorage.getAllKeys()
         .then(keys => AsyncStorage.multiRemove(keys))
+     
+
 }
   
-  async getDetails(key: string) {
+  async getDetails(key) {
     return await AsyncStorage.getItem(key)
   }
 
-  async reoveDetails(key: string) {
+  async reoveDetails(key) {
    return await AsyncStorage.removeItem(key, (err) => {
       //alert(err)
     });
@@ -92,14 +145,14 @@ export default class Functions {
    * @param value
    * @returns {boolean}
    */
-  isNullOrEmpty(value: string | null) {
+  isNullOrEmpty(value) {
     return value == null || value === '';
   }
 
-  numberWithCommas(x: { toString: () => string; }) {
+  numberWithCommas(x) {
     return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-  NumberOnlyvalidate(evt: string) {
+  NumberOnlyvalidate(evt) {
     return evt?.replace(/[^0-9]/g, '');
   }
 
@@ -118,7 +171,7 @@ export default class Functions {
   /**
    * Generate a zlert
    */
-  ShowAlert(message: any, type: any) {
+  ShowAlert(message, type) {
     EventRegister.emit(global.event.openSnackbar, {
       type: type,
       message: message,
@@ -135,7 +188,7 @@ export default class Functions {
    * @param string
    * @returns string
    */
-  capitalizeFirstLetter(string: string | null) {
+  capitalizeFirstLetter(string) {
     if (string !== null && string !== '') {
       return string.charAt(0).toUpperCase() + string.slice(1);
     } else {
@@ -150,7 +203,7 @@ export default class Functions {
    * @param caseInsensitive a boolean, case sensitive comparison or not, default false
    * @returns {boolean}
    */
-  matchString(a: string, b: string, caseInsensitive: boolean | null) {
+  matchString(a, b, caseInsensitive) {
     if (caseInsensitive == null) caseInsensitive = false;
     return caseInsensitive ? a.toLowerCase() == b.toLowerCase() : a == b;
   }
@@ -166,7 +219,7 @@ export default class Functions {
     * @param values []
      @returns {}
     */
-     replace(string: string | null, values: string | any[]) {
+     replace(string, values) {
       if (string != null) {
         for (let i = 0; i < values.length; i++) {
           string = string.replace(
@@ -178,11 +231,7 @@ export default class Functions {
       }
       return string;
     }
-    showNotification(value: any, props: any) {
+    showNotification(value, props) {
       EventRegister.emit(global.event.notificationPop, value, props);
     }
-}
-
-function alert(arg0: string) {
-  throw new Error('Function not implemented.');
 }

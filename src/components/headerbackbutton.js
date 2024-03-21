@@ -20,7 +20,7 @@ export const Backbutton = (props) => {
                 marginLeft:10,
 
             }}>
-            <Icon name='arrowleft' size={35} color={'#000'} backgroundColor={"lightgrey"} />
+            <Icon name='arrowleft' size={35} color={'#4f81bd'} backgroundColor={"lightgrey"} />
 
         </TouchableOpacity>
 )}
