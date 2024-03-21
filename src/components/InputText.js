@@ -13,8 +13,8 @@ import Icon from "react-native-vector-icons/Entypo";
 import { useTheme } from "@react-navigation/native";
 import IntlPhoneInput from "react-native-intl-phone-input";
 import { fontSize, fontFamily } from "../Assets/Constant/FontandSize";
-import { icons } from "../Assets";
-import Receipient from "../Screens/ManualReceipient/Receipient";
+import { icons } from "./Assets";
+// import Receipient from "../Screens/ManualReceipient/Receipient";
 const height = Dimensions.get("screen").height;
 function InputText(props) {
   const { colors } = useTheme();
@@ -61,7 +61,7 @@ function InputText(props) {
                 onChangeText={onChangeNumber}
                 value={number}
                 placeholder={name}
-                defaultCountry={"US"}
+                defaultCountry={"IN"}
                 paddingHorizontal={10}
                 maxLength={10}
                 flagStyle={{ fontSize: 25 }}
@@ -141,6 +141,7 @@ const LocalStyle = StyleSheet.create({
   },
   input1: {
     flex: 1,
+    height:45,
     paddingTop: 10,
     paddingRight: 10,
     paddingBottom: 10,
@@ -154,15 +155,17 @@ const LocalStyle = StyleSheet.create({
     fontSize: 16,
     fontStyle: "normal",
     textAlign: "left",
+    height:45,
     width: "100%",
-    padding: 0,
+    // padding: 0,
     color: "#000",
+  
 
     // marginHorizontal: -8,
     //  paddingBottom:-5,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
   },
 });
 export default InputText;
