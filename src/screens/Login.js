@@ -4,7 +4,7 @@ import React from 'react'
 export default function Login() {
   return (
     <View style={styles.container}>
-      <Text>LoginScreen</Text>
+      <Text>Login</Text>
     </View>
   )
 }
