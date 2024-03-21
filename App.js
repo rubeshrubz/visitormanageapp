@@ -7,7 +7,7 @@ import MainScreen from './src/screens/MainScreen';
 import VisitorDetailsScreen from './src/screens/VistorsDetails';
 import VisitorRegisterScreen from './src/screens/VisitorRegisterScreen';
 import ViewerScreen from './src/screens/ViewerScreen';
-
+import VisitorCountScreen from './src/screens/VisitorCountScreen';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
         />
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="ViewerScreen" component={ViewerScreen} />
+        <Stack.Screen name="VisitorCountScreen" component={VisitorCountScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
