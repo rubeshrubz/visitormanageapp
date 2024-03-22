@@ -21,12 +21,12 @@ const Button = (props) => {
     text,
     buttonStyle,
     image,
-    textColor = colors.background,
+   // textColor = colors.background,
     img,
   } = props;
 
   return (
-    <View style={{}}>
+    <View>
       <TouchableOpacity onPress={onPress}>
         <View
           style={[
@@ -36,12 +36,12 @@ const Button = (props) => {
           ]}
         >
           {img && (
-            <View style={{ flex: 0.6, justifyContent: "center" }}>
+            <View style={{ justifyContent: "center" }}>
               <Image style={styles.Img} source={image} />
             </View>
           )}
-          <View style={{ flex: 0.4 }}>
-            <Text style={[styles.buttonText, { color: textColor }]}>
+          <View>
+            <Text style={[styles.buttonText, { color:'#fff' }]}>
               {text}
             </Text>
           </View>
@@ -53,13 +53,15 @@ const Button = (props) => {
 
 const styles = StyleSheet.create({
   buttonView: {
-    padding: 8,
-    marginVertical: 15,
-    marginHorizontal: 30,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    // height:50
+     width:(Height / 100) * 25,
+     padding: 10,
+     marginVertical: 15,
+     marginHorizontal: 30,
+     borderRadius: 8,
+     justifyContent: "center",
+     alignItems: "center",
+     height: 50,
+   
   },
   buttonText: {
     fontSize: 16,

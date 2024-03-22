@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function VisitorRegisterScreen() {
+  const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
   const [mobilenumber, setmobilenumber] = useState('');
   const [civilid, setcivilid] = useState('');
@@ -26,7 +27,7 @@ export default function VisitorRegisterScreen() {
   const [intime, setintime] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dialcode, Setdialcode] = useState('');
-  const navigation = useNavigation();
+
 
   const onChangeNumber = ({ dialCode, phoneNumber, }) => {
     Setdialcode(dialCode);
@@ -97,7 +98,7 @@ export default function VisitorRegisterScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.button_cover}>
-        <Backbutton onPress={() => null} />
+        <Backbutton onPress={() => navigation.goBack()} />
         <Text style={styles.profile_text}>Visitor's Register</Text>
       </View>
       <ScrollView>

@@ -1,6 +1,6 @@
 const themesColor = {
     warning: {
-      backgroundColor: '#004999',
+      backgroundColor: '#4f81bd',
     },
     danger: {
       backgroundColor: '#cc3300',

@@ -12,26 +12,17 @@ import SnackBar from './src/components/SnackBar';
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+function App(props) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="Login" component={Login} /> */}
-          <Stack.Screen
-            name="VisitorRegisterScreen"
-            component={VisitorRegisterScreen}
-          />
-          <Stack.Screen
-            name="VisitorDetailsScreen"
-            component={VisitorDetailsScreen}
-          />
           <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="VisitorRegisterScreen" component={VisitorRegisterScreen}/>
+          <Stack.Screen name="VisitorDetailsScreen" component={VisitorDetailsScreen}/>  
           <Stack.Screen name="ViewerScreen" component={ViewerScreen} />
-          <Stack.Screen
-            name="VisitorCountScreen"
-            component={VisitorCountScreen}
-          />
+          <Stack.Screen name="VisitorCountScreen" component={VisitorCountScreen}/> 
         </Stack.Navigator>
         <SnackBar />
       </NavigationContainer>
