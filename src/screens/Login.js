@@ -14,7 +14,6 @@ import {
 import InputText from '../components/InputText';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Colors from '../components/Colors';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorRegisterScreen() {
@@ -56,7 +55,7 @@ export default function VisitorRegisterScreen() {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle={'light-content'} backgroundColor={Colors.button_text} />
+        <StatusBar barStyle={'light-content'} backgroundColor={'#4f81bd'} />
         {/* <View style={styles.inputview}> */}
         <Text style={styles.text}>Moblie Number</Text>
         <InputText
@@ -89,7 +88,7 @@ export default function VisitorRegisterScreen() {
             justifyContent: 'center',
           }}>
           <Text style={styles.registertext}>Don’t have an account? </Text>
-          <TouchableOpacity onPress={() => null}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
             <Text style={styles.registertext2}>Sign up</Text>
           </TouchableOpacity>
         </View>
@@ -101,13 +100,13 @@ export default function VisitorRegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     height: (Height / 3) * 3,
-    backgroundColor: Colors.white,
+    backgroundColor: '#fff',
     justifyContent: 'center',
   },
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: Colors.button_text,
+    color: '#4f81bd',
     marginLeft: 22,
     marginVertical: 10,
   },
@@ -115,14 +114,14 @@ const styles = StyleSheet.create({
   subtext: {
     fontSize: 18,
     fontWeight: 'bold',
-    color:  Colors.white,
+    color: '#fff',
   },
   subbutton: {
     height: 45,
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: Colors.button_text,
+    backgroundColor: '#4f81bd',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
@@ -139,6 +138,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // marginVertical: 10,
     fontSize: 16,
-    color: Colors.button_text,
+    color: '#4f81bd',
   },
 });

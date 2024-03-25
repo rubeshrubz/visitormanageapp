@@ -11,33 +11,29 @@ import React from 'react';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import {Backbutton} from '../components/headerbackbutton';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ViewerScreen({route}) {
   const files = route?.params;
   console.log('files==>', files?.image1);
   console.log('files==>', files?.image2);
 
-
-const navigation=useNavigation()
+  const navigation = useNavigation();
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <View style={{flex: 0.1, backgroundColor: '#fff', flexDirection: 'row'}}>
-        <View
+        {/* <View
           style={{
             flex: 0.12,
             backgroundColor: '#fff',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          {/* <Image
-            source={require('../components/Assets/left.png')}
-            style={{height: '45%', width: '45%'}}
-          /> */}
+      
           <Backbutton onPress={() => navigation.goBack()} />
-        </View>
-        <View
+        </View> */}
+        {/* <View
           style={{
             flex: 0.88,
             backgroundColor: '#fff',
@@ -54,9 +50,12 @@ const navigation=useNavigation()
             {' '}
             Document Preview
           </Text>
+        </View> */}
+
+        <View style={styles.button_cover}>
+          <Backbutton onPress={() => navigation.goBack()} />
+          <Text style={styles.profile_text}>Document Preview</Text>
         </View>
-        {/* <Backbutton onPress={() => navigation.goBack()} />
-        <Text style={styles.profile_text}>Visitor's Register</Text> */}
       </View>
       <View
         style={{
@@ -102,7 +101,9 @@ const navigation=useNavigation()
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <TouchableOpacity style={styles.subbutton}>
+        <TouchableOpacity
+          style={styles.subbutton}
+          onPress={() => navigation.navigate('MainScreen')}>
           <Text style={styles.subtext}>Submit</Text>
         </TouchableOpacity>
       </View>
@@ -121,8 +122,21 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#004999',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button_cover: {
+    height: 50,
+    width: '100%',
+    backgroundColor: 'lightgrey',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  profile_text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4f81bd',
+    marginHorizontal: 85,
   },
 });

@@ -134,7 +134,7 @@ export default function UploadCamera(props) {
         image2: secondImageUri,
       });
     } else {
-      console.log('hiii');
+      setModal(!modal);
     }
   };
 
@@ -145,7 +145,7 @@ export default function UploadCamera(props) {
           <Image
             resizeMode="contain"
             style={[styles.logoContainer]}
-            source={icons.closeImage}></Image>
+            source={icons.closeImage}/>
         </TouchableOpacity>
       </View>
 
@@ -255,21 +255,6 @@ export default function UploadCamera(props) {
         }}>
         {'or'}
       </Text>
-      {/* <Button
-        onPress={openFilePicker}
-        leftIcon={icons.upload}
-        style={{
-          buttonContainer: {
-            elevation: 5,
-          },
-          text: {
-            color:'#fff',
-          },
-          iconStyle: {
-            tintColor: '#fff',
-          },
-        }}
-        title={'uploadgallery'}></Button> */}
       <View
         style={{
           bottom: 10,
@@ -292,9 +277,7 @@ export default function UploadCamera(props) {
         onRequestClose={() => {
           setVisible(!visible);
         }}>
-        {/* <TouchableWithoutFeedback
-      onPress={()=>setVisible(!visible)}
-      > */}
+        
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Image
@@ -343,6 +326,79 @@ export default function UploadCamera(props) {
                 backgroundColor: '#357AB4',
               }}
               onPress={() => setVisible(!visible)}>
+              <Text
+                style={{
+                  fontFamily: 'Roboto',
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                  textAlign: 'center',
+                }}>
+                OK
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {
+          setModal(!modal);
+        }}>
+        {/* <TouchableWithoutFeedback
+      onPress={()=>setVisible(!visible)}
+      > */}
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Image
+              resizeMode="contain"
+              style={{height: '35%', width: '40%'}}
+              source={icons.condition}></Image>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: '#000',
+                top: 2,
+              }}>
+              Adding Images are mandatory
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 13,
+                fontWeight: '200',
+                color: '#000',
+                top: 4,
+              }}>
+              Both Front and Back are in{'\n'}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 12,
+                fontWeight: '200',
+                color: '#000',
+                bottom: 10,
+              }}>
+              types of PDF, JPG, and PNG.
+            </Text>
+            <TouchableOpacity
+              style={{
+                top: 10,
+                height: (windowHeight / 80) * 3.5,
+                width: (windowWidth / 80) * 9,
+                borderColor: '#357AB4',
+                borderRadius: 6,
+                borderWidth: 1,
+                justifyContent: 'center',
+                backgroundColor: '#357AB4',
+              }}
+              onPress={() => setModal(false)}>
               <Text
                 style={{
                   fontFamily: 'Roboto',

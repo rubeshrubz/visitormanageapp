@@ -106,7 +106,7 @@ export default function VisitorDetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:  Colors.white,
+    backgroundColor: Colors.white,
     // marginTop:10,
   },
   text: {
@@ -138,14 +138,14 @@ const styles = StyleSheet.create({
   subtext: {
     fontSize: 18,
     fontWeight: 'bold',
-    color:  Colors.white,
+    color: Colors.white,
   },
   subbutton: {
     height: 45,
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor:  Colors.black,
+    backgroundColor: Colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -69,23 +69,6 @@ export default function VisitorRegisterScreen() {
     }
   };
 
-  //   var storeData = async () => {
-  //     try {
-  //         await AsyncStorage.setItem(
-  //             '@MySuperStore:key',
-  //             firstname,
-  //             mobilenumber,
-  //             civilid,
-  //             visit,
-  //             meet,
-  //             comapny,
-  //             intime
-  //         );
-  //     } catch (error) {
-  //         // Error saving data
-  //     }
-  // };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.button_cover}>
