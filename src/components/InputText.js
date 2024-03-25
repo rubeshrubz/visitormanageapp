@@ -1,171 +1,111 @@
-import * as React from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
-  StyleSheet,
   Text,
-  TouchableOpacity,
-  Platform,
+  Image,
+  StyleSheet,
   Dimensions,
   TextInput,
-  Image,
-} from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
-import { useTheme } from "@react-navigation/native";
-import IntlPhoneInput from "react-native-intl-phone-input";
-import { fontSize, fontFamily } from "../Assets/Constant/FontandSize";
-import { icons } from "./Assets";
-// import Receipient from "../Screens/ManualReceipient/Receipient";
-const height = Dimensions.get("screen").height;
-function InputText(props) {
-  const { colors } = useTheme();
+  props,
+  TouchableOpacity,
+} from 'react-native';
+import IntlPhoneInput from 'react-native-intl-phone-input';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
+
+const InputText = props => {
+  const [number, setshow] = useState(null);
   const {
-    secureText,
-    visible,
     mobile,
-    onChangeNumber,
-    container,
-    onPress,
-    name,
-    nameColor,
-    infoModal,
-    info,
+    secureText,
     secureTextEntry,
+    visible,
+    onPress,
     editable,
+    style,
+    keyboardType,
+    onChangeText,
+    name,
+    value,
+    onChangeNumber,
+    placeholder,
   } = props;
-  const [borderColor, setBorderColor] = React.useState(false);
-  const [number, onChangeNum] = React.useState(null);
   return (
-    <View
-      style={[
-        container,
-        {
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "center",
-        },
-      ]}
-    >
-      <View style={{ flex: 0.9 }}>
+    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      {mobile ? (
+        <IntlPhoneInput
+          containerStyle={{
+            height: (Height / 50) * 3,
+            width: (Width / 3.3) * 3,
+            backgroundColor:'#f0f0f0'
+          }}
+          value={number}
+          defaultCountry={'IN'}
+          placeholder={placeholder}
+          onChangeText={onChangeNumber}
+          flagStyle={{fontSize: 25}}
+          dialCodeTextStyle={{color: '#000'}}
+          keyboardType="numeric"
+          phoneInputStyle={{color: '#000'}}
+          placeholderTextColor="#9CA3AF"
+          editable
+        />
+      ) : (
         <View
           style={{
-            flex: 0.1,
-            height: (height / 100) * 5,
-            flexDirection: "row",
+            borderWidth: 0,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: (Height / 50) * 3,
+            width: (Width / 3.3) * 3,
             borderRadius: 10,
-          }}
-        >
-          <View style={{ flex: 1 }}>
-            {mobile ? (
-              <IntlPhoneInput
-                containerStyle={LocalStyle.countrycodeInputStyle}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder={name}
-                defaultCountry={"IN"}
-                paddingHorizontal={10}
-                maxLength={10}
-                flagStyle={{ fontSize: 25 }}
-                dialCodeTextStyle={{ color: "#000" }}
-                keyboardType="numeric"
-                phoneInputStyle={{ color: "#000" }}
-                placeholderTextColor="#9CA3AF"
-                editable
-              />
-            ) : (
-              <View style={LocalStyle.searchSection}>
-                <TextInput
-                  {...props}
-                  secureTextEntry={secureTextEntry}
-                  style={LocalStyle.input1}
-                  placeholder={name}
-                  placeholderTextColor="#9CA3AF"
-                  paddingHorizontal={10}
-                  editable={editable}
-                  // secureTextEntry={true}
-                />
-                {secureText && (
-                  <TouchableOpacity
-                    onPress={onPress}
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingRight: 13,
-                    }}
-                  >
-                    {visible == true ? (
-                      <Image
-                        source={icons.Group}
-                        style={{
-                          height: (height / 100) * 2.5,
-                          width: (height / 100) * 2.5,
-                          resizeMode: "contain",
-                        }}
-                      />
-                    ) : (
-                      <Image
-                        source={icons.Vector}
-                        style={{
-                          height: (height / 100) * 2.5,
-                          width: (height / 100) * 2.5,
-                          resizeMode: "contain",
-                        }}
-                      />
-                    )}
-                  </TouchableOpacity>
-                )}
-              </View>
-            )}
-          </View>
+            backgroundColor: '#f0f0f0',
+          }}>
+          <TextInput
+            {...props}
+            style={[
+              {
+                height: (Height / 50) * 3,
+                width: (Width / 3.52) * 3,
+                // borderWidth: 1,
+                fontSize: 15,
+                fontWeight: 'bold',
+                elevation: 0,
+                backgroundColor: '#f0f0f0',
+                borderRadius: 15,
+                marginVertical: 10,
+              },
+              {style},
+            ]}
+            secureTextEntry={secureTextEntry}
+            editable={editable}
+            keyboardType={keyboardType}
+          />
+          {secureText && (
+            <TouchableOpacity
+              style={{
+                borderWidth: 0,
+                alignItems: 'center',
+                height: (Height / 50) * 3,
+                backgroundColor:'#f0f0f0',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+              }}
+              onPress={onPress}
+              keyboardType={keyboardType}>
+              {visible == true ? (
+                <Icon name={'eye-off'} size={22} color={'#4f81bd'} />
+              ) : (
+                <Icon name={'eye-check'} size={23} color={'#4f81bd'} />
+              )}
+            </TouchableOpacity>
+          )}
         </View>
-      </View>
+      )}
     </View>
   );
-}
-const LocalStyle = StyleSheet.create({
-  input: {
-    height: (height / 100) * 5,
-    flexDirection: "row",
-    borderRadius: 10,
-    backgroundColor: "red",
-  },
-  searchSection: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 10,
-  },
-  searchIcon: {
-    padding: 10,
-  },
-  input1: {
-    flex: 1,
-    height:45,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 10,
-    color: "#000",
-    fontFamily: "Roboto-Medium",
-  },
-  countrycodeInputStyle: {
-    backgroundColor: "#f0f0f0",
-    fontSize: 16,
-    fontStyle: "normal",
-    textAlign: "left",
-    height:45,
-    width: "100%",
-    // padding: 0,
-    color: "#000",
-  
-
-    // marginHorizontal: -8,
-    //  paddingBottom:-5,
-    // flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
-  },
-});
+};
 export default InputText;

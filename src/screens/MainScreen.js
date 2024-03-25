@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,StatusBar ,SafeAreaView} from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import {useNavigation} from '@react-navigation/native';
 const MainScreen = props => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'#4f81bd'}/>
       <View style={{flex:1,margin:10,alignItems:'center',justifyContent:'center'}}>
         <Text style={{fontWeight:'bold',fontSize:24,marginVertical:10}} >Select your role</Text>
         <Button
@@ -19,7 +19,7 @@ const MainScreen = props => {
         />
         <Button
         text={'Visitor'}
-        // onPress={()=>}
+        onPress = {()=>navigation.navigate('VisitorRegisterScreen')}
         />
         <Button
         text={'Security Staff'}

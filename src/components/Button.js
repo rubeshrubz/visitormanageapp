@@ -31,7 +31,7 @@ const Button = (props) => {
         <View
           style={[
             styles.buttonView,
-            { backgroundColor: "#004999" },
+            { backgroundColor: "#4f81bd" },
             buttonStyle,
           ]}
         >
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
      padding: 10,
      marginVertical: 15,
      marginHorizontal: 30,
-     borderRadius: 8,
+     borderRadius: 10,
      justifyContent: "center",
      alignItems: "center",
      height: 50,

@@ -53,7 +53,7 @@ const VisitorCountScreen = ()=> {
     </View>
     <TouchableOpacity style={styles.subbutton}>
         <Text style={styles.subtext}>Click Here to view Today's Visitors</Text>
-      </TouchableOpacity>
+    </TouchableOpacity>
   </View>
 
   

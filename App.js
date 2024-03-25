@@ -10,7 +10,7 @@ import ViewerScreen from './src/screens/ViewerScreen';
 import VisitorCountScreen from './src/screens/VisitorCountScreen';
 import SnackBar from './src/components/SnackBar';
 import UploadCamera from './src/screens/UploadCamera';
-
+import HomeScreen from './src/screens/HomeScreen';
 const Stack = createNativeStackNavigator();
 
 function App(props) {
@@ -35,6 +35,7 @@ function App(props) {
             name="VisitorCountScreen"
             component={VisitorCountScreen}
           />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
         <SnackBar />
       </NavigationContainer>

@@ -98,12 +98,12 @@ export default function VisitorRegisterScreen() {
           <InputText
             onChangeText={text => setfirstname(text)}
             value={firstname}
-            name={'Name'}
+            placeholder={'Name'}
           />
           <Text style={styles.text}>Moblie Number</Text>
           <InputText
             value={mobilenumber}
-            placeholder={'Moblie Number'}
+            // placeholder={'Moblie Number'}
             mobile={true}
             onChangeNumber={text => onChangeNumber(text)}
           />
@@ -111,31 +111,31 @@ export default function VisitorRegisterScreen() {
           <InputText
             onChangeText={text => setcivilid(text)}
             value={civilid}
-            name={'Civil ID'}
+            placeholder={'Civil ID'}
           />
           <Text style={styles.text}>Purpose Of Visit</Text>
           <InputText
             onChangeText={text => setvisit(text)}
             value={visit}
-            name={'Purpose Of Visit'}
+            placeholder={'Purpose Of Visit'}
           />
           <Text style={styles.text}>Person To Meet</Text>
           <InputText
             onChangeText={text => setmeet(text)}
             value={meet}
-            name={'Person To Meet'}
+            placeholder={'Person To Meet'}
           />
-          <Text style={styles.text}>company Name</Text>
+          <Text style={styles.text}>Company Name</Text>
           <InputText
             onChangeText={text => setcompany(text)}
             value={comapny}
-            name={'Company Name'}
+            placeholder={'Company Name'}
           />
           <Text style={styles.text}>In Time</Text>
           <InputText
             onChangeText={text => setintime(text)}
             value={intime}
-            name={'In Time'}
+            placeholder={'In Time'}
           />
           <TouchableOpacity
             onPress={() => {
