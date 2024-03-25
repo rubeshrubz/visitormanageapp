@@ -78,6 +78,7 @@ android {
     namespace "com.visitormanageapp"
     defaultConfig {
         applicationId "com.visitormanageapp"
+        missingDimensionStrategy 'react-native-camera', 'mlkit' 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

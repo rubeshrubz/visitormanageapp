@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   button_cover: {
     height: 50,
     width: '100%',
-    backgroundColor:'lightgrey',
+    backgroundColor: 'lightgrey',
     // borderWidth: 1,
     alignItems: 'center',
     flexDirection: 'row',
@@ -135,18 +135,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 85,
   },
   subtext: {
-    fontSize:18,
-    fontWeight:'bold',
-    color:'#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
   },
-  subbutton:{
-    height:45,
-    width:'90%',
-    borderRadius:10,
-    alignSelf:'center',
-    backgroundColor:'#000',
-    alignItems:'center',
-    justifyContent:'center'
-    
-  }
+  subbutton: {
+    height: 45,
+    width: '90%',
+    borderRadius: 10,
+    alignSelf: 'center',
+    backgroundColor: '#000',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

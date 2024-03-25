@@ -73,7 +73,7 @@ export default function VisitorRegisterScreen() {
           global.const.warning,
         );
       }else {
-       navigation.navigate('VisitorDetailsScreen')
+       navigation.navigate('UploadCamera')
       }
 
   };
