@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, ScrollView ,TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, ScrollView ,TouchableOpacity,SafeAreaView } from 'react-native'
 import React from 'react'
 import Pie from 'react-native-pie'
-import { SafeAreaView } from 'react-native-safe-area-context'
+
 
 const VisitorCountScreen = ()=> {
 
@@ -53,7 +53,7 @@ const VisitorCountScreen = ()=> {
     </View>
     <TouchableOpacity style={styles.subbutton}>
         <Text style={styles.subtext}>Click Here to view Today's Visitors</Text>
-    </TouchableOpacity>
+      </TouchableOpacity>
   </View>
 
   
