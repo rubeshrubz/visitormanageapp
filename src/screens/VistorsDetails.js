@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import InputText from '../components/InputText';
 import {Backbutton} from '../components/headerbackbutton';
+import Colors from '../components/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -105,13 +106,13 @@ export default function VisitorDetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:  Colors.white,
     // marginTop:10,
   },
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#000',
+    color: Colors.black,
     marginLeft: 20,
     marginBottom: 20,
   },
@@ -137,14 +138,14 @@ const styles = StyleSheet.create({
   subtext: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color:  Colors.white,
   },
   subbutton: {
     height: 45,
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#000',
+    backgroundColor:  Colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },
