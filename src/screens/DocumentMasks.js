@@ -1,6 +1,6 @@
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-
+import Colors from "../components/Colors";
 const { height, width } = Dimensions.get("window");
 const maskRowHeight = Math.round((height - 300) / 20);
 const maskColWidth = (width - 300) / 2;
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   scanInstructionText: {
-    color: "#fff",
+    color: Colors.white,
     fontWeight: "bold",
     fontSize: 16,
     textAlign: "center",
   },
   instructionText: {
-    color: "#fff",
+    color:  Colors.white,
     textAlign: "center",
     fontWeight: "bold",
   },

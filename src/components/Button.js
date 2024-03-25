@@ -8,6 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import Colors from "./Colors";
 
 // const SemiBold = {fontFamily: 'Poppins-SemiBold'};
 const Height = Dimensions.get("screen").height;
@@ -31,7 +32,7 @@ const Button = (props) => {
         <View
           style={[
             styles.buttonView,
-            { backgroundColor: "#4f81bd" },
+            { backgroundColor: Colors.button_text },
             buttonStyle,
           ]}
         >
@@ -41,7 +42,7 @@ const Button = (props) => {
             </View>
           )}
           <View>
-            <Text style={[styles.buttonText, { color:'#fff' }]}>
+            <Text style={[styles.buttonText, { color:Colors.white }]}>
               {text}
             </Text>
           </View>
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     textAlign: "center",
-    color: "#fff",
+    color: Colors.white,
     paddingVertical: 5,
     fontWeight: "900",
     //  textTransform:'capitalize'

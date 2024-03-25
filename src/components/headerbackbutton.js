@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Colors from "./Colors";
 
 export const Backbutton = (props) => {
     const {
@@ -20,7 +21,7 @@ export const Backbutton = (props) => {
                 marginLeft:10,
 
             }}>
-            <Icon name='arrowleft' size={35} color={'#4f81bd'} backgroundColor={"lightgrey"} />
+            <Icon name='arrowleft' size={35} color={Colors.button_text} backgroundColor={"lightgrey"} />
 
         </TouchableOpacity>
 )}

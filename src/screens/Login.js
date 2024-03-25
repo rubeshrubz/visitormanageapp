@@ -14,6 +14,7 @@ import {
 import InputText from '../components/InputText';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Colors from '../components/Colors';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorRegisterScreen() {
@@ -55,7 +56,7 @@ export default function VisitorRegisterScreen() {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle={'light-content'} backgroundColor={'#4f81bd'} />
+        <StatusBar barStyle={'light-content'} backgroundColor={Colors.button_text} />
         {/* <View style={styles.inputview}> */}
         <Text style={styles.text}>Moblie Number</Text>
         <InputText
@@ -88,7 +89,7 @@ export default function VisitorRegisterScreen() {
             justifyContent: 'center',
           }}>
           <Text style={styles.registertext}>Don’t have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+          <TouchableOpacity onPress={() => null}>
             <Text style={styles.registertext2}>Sign up</Text>
           </TouchableOpacity>
         </View>
@@ -100,13 +101,13 @@ export default function VisitorRegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     height: (Height / 3) * 3,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     justifyContent: 'center',
   },
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#4f81bd',
+    color: Colors.button_text,
     marginLeft: 22,
     marginVertical: 10,
   },
@@ -114,14 +115,14 @@ const styles = StyleSheet.create({
   subtext: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color:  Colors.white,
   },
   subbutton: {
     height: 45,
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#4f81bd',
+    backgroundColor: Colors.button_text,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
@@ -138,6 +139,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // marginVertical: 10,
     fontSize: 16,
-    color: '#4f81bd',
+    color: Colors.button_text,
   },
 });
