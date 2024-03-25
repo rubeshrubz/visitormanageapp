@@ -117,7 +117,7 @@ export default function UploadCamera(props) {
         if (capturingFirstImage) {
           setFirstImageUri(capturedImage.uri);
           setCapturingFirstImage(false);
-        } else  {
+        } else {
           setSecondImageUri(capturedImage.uri);
           setCapturingSecondImage(false);
         }
@@ -128,17 +128,14 @@ export default function UploadCamera(props) {
   };
 
   const _next = () => {
-
-if(firstImageUri&&secondImageUri){
-  navigation.navigate("ViewerScreen",{
-   image1: firstImageUri,
-   image2:secondImageUri
-  })
-}
-else{
-  console.log("hiii")
-}
-
+    if (firstImageUri && secondImageUri) {
+      navigation.navigate('ViewerScreen', {
+        image1: firstImageUri,
+        image2: secondImageUri,
+      });
+    } else {
+      console.log('hiii');
+    }
   };
 
   return (

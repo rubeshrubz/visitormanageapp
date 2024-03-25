@@ -14,7 +14,7 @@ import {Backbutton} from '../components/headerbackbutton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function VisitorRegisterScreen() {
   const navigation = useNavigation();
@@ -28,13 +28,11 @@ export default function VisitorRegisterScreen() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dialcode, Setdialcode] = useState('');
 
-
-  const onChangeNumber = ({ dialCode, phoneNumber, }) => {
+  const onChangeNumber = ({dialCode, phoneNumber}) => {
     Setdialcode(dialCode);
     const num = dialCode + mobilenumber;
     setmobilenumber(phoneNumber);
-
-};
+  };
 
   const _vaildate = () => {
     if (global.functions.isNullOrEmpty(firstname)) {
@@ -47,53 +45,46 @@ export default function VisitorRegisterScreen() {
         'Please Enter mobilenumber',
         global.const.warning,
       );
-    }else if (global.functions.isNullOrEmpty(civilid)) {
-        global.functions.ShowAlert(
-          'Please Enter civilid',
-          global.const.warning,
-        );
-      }else if (global.functions.isNullOrEmpty(visit)) {
-        global.functions.ShowAlert(
-          'Please Enter Purpose Of Visit',
-          global.const.warning,
-        );
-      }else if (global.functions.isNullOrEmpty(meet)) {
-        global.functions.ShowAlert(
-          'Please Enter Person Of Meet',
-          global.const.warning,
-        );
-      }else if (global.functions.isNullOrEmpty(comapny)) {
-        global.functions.ShowAlert(
-          'Please Enter Company Name',
-          global.const.warning,
-        );
-      }else if (global.functions.isNullOrEmpty(intime)) {
-        global.functions.ShowAlert(
-          'Please Enter In Time',
-          global.const.warning,
-        );
-      }else {
-       navigation.navigate('UploadCamera')
-      }
-
+    } else if (global.functions.isNullOrEmpty(civilid)) {
+      global.functions.ShowAlert('Please Enter civilid', global.const.warning);
+    } else if (global.functions.isNullOrEmpty(visit)) {
+      global.functions.ShowAlert(
+        'Please Enter Purpose Of Visit',
+        global.const.warning,
+      );
+    } else if (global.functions.isNullOrEmpty(meet)) {
+      global.functions.ShowAlert(
+        'Please Enter Person Of Meet',
+        global.const.warning,
+      );
+    } else if (global.functions.isNullOrEmpty(comapny)) {
+      global.functions.ShowAlert(
+        'Please Enter Company Name',
+        global.const.warning,
+      );
+    } else if (global.functions.isNullOrEmpty(intime)) {
+      global.functions.ShowAlert('Please Enter In Time', global.const.warning);
+    } else {
+      navigation.navigate('UploadCamera');
+    }
   };
 
-//   var storeData = async () => {
-//     try {
-//         await AsyncStorage.setItem(
-//             '@MySuperStore:key',
-//             firstname,
-//             mobilenumber,
-//             civilid,
-//             visit,
-//             meet,
-//             comapny,
-//             intime
-//         );
-//     } catch (error) {
-//         // Error saving data
-//     }
-// };
+  //   var storeData = async () => {
+  //     try {
+  //         await AsyncStorage.setItem(
+  //             '@MySuperStore:key',
+  //             firstname,
+  //             mobilenumber,
+  //             civilid,
+  //             visit,
+  //             meet,
+  //             comapny,
+  //             intime
+  //         );
+  //     } catch (error) {
+  //         // Error saving data
+  //     }
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -147,7 +138,9 @@ export default function VisitorRegisterScreen() {
             name={'In Time'}
           />
           <TouchableOpacity
-            onPress={() => {_vaildate()}}
+            onPress={() => {
+              _vaildate();
+            }}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Submit</Text>
           </TouchableOpacity>
@@ -175,7 +168,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     // borderWidth:1,
-    
   },
   button_cover: {
     height: 50,
@@ -200,7 +192,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor:'#4f81bd',
+    backgroundColor: '#4f81bd',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,

@@ -11,11 +11,15 @@ import React from 'react';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import {Backbutton} from '../components/headerbackbutton';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ViewerScreen({route}) {
   const files = route?.params;
   console.log('files==>', files?.image1);
   console.log('files==>', files?.image2);
+
+
+const navigation=useNavigation()
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
