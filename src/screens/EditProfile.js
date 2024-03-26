@@ -1,0 +1,295 @@
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  PermissionsAndroid,
+  Alert,
+  Dimensions,
+  Image,
+} from 'react-native';
+import InputText from '../components/InputText';
+import {Backbutton} from '../components/headerbackbutton';
+import {useNavigation} from '@react-navigation/native';
+import DocumentPicker from 'react-native-document-picker';
+import RNFS from 'react-native-fs';
+import {icons} from '../components/Assets';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
+
+export default function EditProfile() {
+  const navigation = useNavigation();
+  const [firstname, setfirstname] = useState('');
+  const [mobilenumber, setmobilenumber] = useState('');
+  const [Email, SetEmail] = useState('');
+  const [visit, setvisit] = useState('');
+  const [meet, setmeet] = useState('');
+  const [show, setshow] = useState(true);
+  const [comapny, setcompany] = useState('');
+  const [intime, setintime] = useState('');
+  const [images, SetImages] = useState('');
+  const [eye, setEye] = useState(true);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const openFilePicker = async () => {
+    if (Platform.OS == 'android') {
+      requestMediaPermission();
+    }
+    try {
+      const resp: any = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+        readContent: true,
+        // allowMultiSelection:true
+      });
+      console.log('resp===>', resp);
+      let decodedFileName = resp[0].uri;
+      decodedFileName = resp[0]?.uri?.replaceAll('%20', ' ');
+      if (Platform.OS == 'android') {
+      } else {
+        decodedFileName = decodeURIComponent(decodedFileName);
+      }
+      if (
+        resp[0]?.type === 'image/jpeg' ||
+        resp[0]?.type === 'image/jpg' ||
+        resp[0]?.type === 'image/png'
+      ) {
+        RNFS.readFile(decodedFileName, 'base64')
+          .then(async res => {
+            console.log('res', resp);
+            console.log('typePDF', resp[0].uri);
+
+            if (resp[0].type == 'image/jpeg' || resp[0].type == 'image/png') {
+              console.log('frontpage==>####', resp[0]?.uri?.length);
+              // props.navigation.navigate('ViewerScreen', {
+              //   file: resp[0],
+              // });
+              SetImages(resp[0]?.uri);
+            }
+          })
+          .catch(out => {
+            console.log('real error====>', out);
+          });
+      } else {
+        console.log('real error====>', out);
+      }
+    } catch (err) {
+      console.log('data==>', err);
+    }
+  };
+
+  async function requestMediaPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          title: 'Media Permission',
+          message: 'App needs access to your media files.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Media permission granted');
+      } else {
+        console.log('Media permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  const [date, Setdate] = useState('');
+  console.log('meet=>', meet);
+  const _validate = () => {
+    if (global.functions.isNullOrEmpty(firstname)) {
+      global.functions.ShowAlert('Please enter name', global.const.warning);
+    } else if (global.functions.isNullOrEmpty(Email)) {
+      global.functions.ShowAlert('Please enter email', global.const.warning);
+    } else if (global.functions.ValidateEmail(Email)) {
+      global.functions.ShowAlert(
+        'Please enter valid emailid',
+        global.const.warning,
+      );
+    } else if (global.functions.isNullOrEmpty(visit)) {
+      global.functions.ShowAlert('Please Enter Password', global.const.warning);
+    } else if (visit.length < 8) {
+      global.functions.ShowAlert(
+        'Password Should be Minimum 8 char',
+        global.const.warning,
+      );
+    } else {
+      // navigation.navigate('VisitorRegisterScreen');
+      Alert.alert('hi');
+    }
+  };
+  const secureText = () => {
+    setEye(!eye);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    console.warn('A date has been picked: ', date);
+
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
+    const day = dateObject.getDate();
+
+    const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${
+      day < 10 ? '0' : ''
+    }${day}`;
+    console.log(formattedDate); // Output: "2024-03-27"
+
+    setmeet(formattedDate);
+    console.log('formattedDate=>', meet);
+    hideDatePicker();
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.button_cover}>
+        <Backbutton onPress={() => navigation.goBack()} />
+        <Text style={styles.profile_text}>EditProfile</Text>
+      </View>
+
+      <ScrollView>
+        <KeyboardAvoidingView style={{flex: 1}}>
+          <View style={styles.avatarCard}>
+            <TouchableOpacity onPress={() => openFilePicker()}>
+              <Image
+                style={styles.avatar}
+                source={images ? {uri: images} : icons.pic}
+              />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.text}>Name</Text>
+          <InputText
+            onChangeText={text => setfirstname(text)}
+            value={firstname}
+            placeholder={'Name'}
+          />
+          <Text style={styles.text}>Email</Text>
+          <InputText
+            onChangeText={text => SetEmail(text)}
+            value={Email}
+            placeholder={'Email ID'}
+          />
+          <Text style={styles.text}>Password</Text>
+          <InputText
+            onChangeText={text => setvisit(text)}
+            value={visit}
+            placeholder={'Password'}
+            visible={show}
+            secureText={secureText}
+            onPress={() => setshow(!show)}
+            secureTextEntry={show}
+          />
+          <Text style={styles.text}>Date of Birth</Text>
+          <InputText
+            onChangeText={text => setcompany(text)}
+            value={meet}
+            // editable={false}
+            date={true}
+            visibles={isDatePickerVisible}
+            onPress={() => setDatePickerVisibility(!isDatePickerVisible)}
+            placeholder={'Date of Birth'}
+          />
+
+          <Text style={styles.text}>Country/Region</Text>
+          <InputText
+            onChangeText={text => setintime(text)}
+            value={intime}
+            placeholder={'Country/Region'}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              _validate();
+            }}
+            style={styles.subbutton}>
+            <Text style={styles.subtext}>Save Changes</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </ScrollView>
+
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#4f81bd',
+    marginLeft: 20,
+    marginVertical: 15,
+  },
+  inputcover: {
+    height: '100%',
+    width: '100%',
+    marginTop: 10,
+    marginBottom: 20,
+    // borderWidth:1,
+  },
+  avatarCard: {
+    height: 90,
+    backgroundColor: '#fff',
+    marginTop: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 10,
+  },
+  avatar: {
+    width: (Width / 22) * 6,
+    height: (Height / 42) * 6,
+    borderRadius: Width / 2,
+    backgroundColor: 'grey',
+  },
+  button_cover: {
+    height: 50,
+    width: '100%',
+    backgroundColor: 'lightgrey',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  profile_text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4f81bd',
+    marginHorizontal: 130,
+  },
+  subtext: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  subbutton: {
+    height: 45,
+    width: '90%',
+    borderRadius: 10,
+    alignSelf: 'center',
+    backgroundColor: '#4f81bd',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 50,
+  },
+});

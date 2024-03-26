@@ -5,4 +5,5 @@ export const icons = {
   upload: require('../Assets/upload.png'),
   condition: require('../Assets/xbox.png'),
   close: require('../Assets/closeend.png'),
+  pic: require('../Assets/pic.png'),
 };

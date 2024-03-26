@@ -11,6 +11,7 @@ import VisitorCountScreen from './src/screens/VisitorCountScreen';
 import SnackBar from './src/components/SnackBar';
 import UploadCamera from './src/screens/UploadCamera';
 import HomeScreen from './src/screens/HomeScreen';
+import EditProfile from './src/screens/EditProfile';
 const Stack = createNativeStackNavigator();
 
 function App(props) {
@@ -18,6 +19,7 @@ function App(props) {
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
+
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen
@@ -35,6 +37,8 @@ function App(props) {
             name="VisitorCountScreen"
             component={VisitorCountScreen}
           />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
         <SnackBar />

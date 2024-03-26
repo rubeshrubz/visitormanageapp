@@ -18,6 +18,7 @@ const InputText = props => {
   const [number, setshow] = useState(null);
   const {
     mobile,
+    date,
     secureText,
     secureTextEntry,
     visible,
@@ -27,6 +28,7 @@ const InputText = props => {
     keyboardType,
     onChangeText,
     name,
+    visibles,
     value,
     onChangeNumber,
     placeholder,
@@ -38,7 +40,7 @@ const InputText = props => {
           containerStyle={{
             height: (Height / 50) * 3,
             width: (Width / 3.3) * 3,
-            backgroundColor:'#f0f0f0'
+            backgroundColor: '#f0f0f0',
           }}
           value={number}
           defaultCountry={'IN'}
@@ -89,7 +91,7 @@ const InputText = props => {
                 borderWidth: 0,
                 alignItems: 'center',
                 height: (Height / 50) * 3,
-                backgroundColor:'#f0f0f0',
+                backgroundColor: '#f0f0f0',
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 10,
@@ -100,6 +102,27 @@ const InputText = props => {
                 <Icon name={'eye-off'} size={22} color={'#4f81bd'} />
               ) : (
                 <Icon name={'eye-check'} size={23} color={'#4f81bd'} />
+              )}
+            </TouchableOpacity>
+          )}
+          {date && (
+            <TouchableOpacity
+              style={{
+                borderWidth: 0,
+                alignItems: 'center',
+                height: (Height / 50) * 3,
+                backgroundColor: '#f0f0f0',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+              }}
+              onPress={onPress}
+              editable={editable}
+              keyboardType={keyboardType}>
+              {visibles == true ? (
+                <Icon name={'chevron-up'} size={23} color={'#4f81bd'} />
+              ) : (
+                <Icon name={'chevron-down'} size={22} color={'#4f81bd'} />
               )}
             </TouchableOpacity>
           )}
