@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "postinstall": "patch-package",
+    "patch": "patch-package",
     "test": "jest"
   },
   "dependencies": {
