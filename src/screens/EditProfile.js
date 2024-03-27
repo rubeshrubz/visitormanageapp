@@ -188,11 +188,16 @@ export default function EditProfile() {
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
           <View style={styles.avatarCard}>
-            <TouchableOpacity onPress={() => openFilePicker()}>
+            <TouchableOpacity
+              onPress={() => openFilePicker()}
+              style={{flexDirection: 'row'}}>
               <Image
                 style={styles.avatar}
                 source={images ? {uri: images} : icons.pic}
               />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => openFilePicker()}>
+              <Image style={styles.cameras} source={icons.camera} />
             </TouchableOpacity>
           </View>
           <Text style={styles.text}>Name</Text>
@@ -368,10 +373,19 @@ const styles = StyleSheet.create({
     top: 10,
   },
   avatar: {
-    width: (Width / 22) * 6,
-    height: (Height / 42) * 6,
+    width: (Width / 22) * 6.2,
+    height: (Height / 42) * 6.2,
     borderRadius: Width / 2,
+    borderColor: '#242760',
+    borderWidth:1,
     backgroundColor: 'grey',
+  },
+  cameras: {
+    width: 25,
+    height: 22,
+    // backgroundColor: '#fff',
+    top: 50,
+    right: 25,
   },
   button_cover: {
     height: 50,

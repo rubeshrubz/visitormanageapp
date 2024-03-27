@@ -6,4 +6,5 @@ export const icons = {
   condition: require('../Assets/xbox.png'),
   close: require('../Assets/closeend.png'),
   pic: require('../Assets/pic.png'),
+  camera: require('../Assets/camera.png'),
 };
