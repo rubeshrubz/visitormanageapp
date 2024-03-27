@@ -9,7 +9,7 @@ const MainScreen = props => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'light-content'} backgroundColor={Colors.button_text}/>
       <View style={{flex:1,margin:10,alignItems:'center',justifyContent:'center'}}>
-        <Text style={{fontWeight:'bold',fontSize:24,marginVertical:10}} >Select your role</Text>
+        <Text style={{fontWeight:'bold',fontSize:24,marginVertical:10}} >Select Your Role</Text>
         <Button
         text={'Building Admin'}
          onPress={()=>navigation.navigate('Login')}

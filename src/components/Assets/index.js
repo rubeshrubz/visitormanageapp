@@ -7,4 +7,5 @@ export const icons = {
   close: require('../Assets/closeend.png'),
   pic: require('../Assets/pic.png'),
   camera: require('../Assets/camera.png'),
+  splash: require('../Assets/splash_screen.png')
 };

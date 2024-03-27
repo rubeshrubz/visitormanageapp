@@ -37,7 +37,7 @@ export default function VisitorRegisterScreen() {
   const _vaildate = () => {
     if (global.functions.isNullOrEmpty(firstname)) {
       global.functions.ShowAlert(
-        'Please Enter First Name',
+        'Please Enter Your Name',
         global.const.warning,
       );
     } else if (global.functions.isNullOrEmpty(mobilenumber)) {

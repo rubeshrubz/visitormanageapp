@@ -1,4 +1,4 @@
-import React,{useRef,useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -40,7 +40,7 @@ function SnackBar(props) {
 
   const openSnack = data => {
     Animated.timing(animatedValue, {
-      toValue: 0,
+      toValue: -5,
       duration: 600,
       useNativeDriver: true,
     }).start(() => closeSnackbar());
@@ -77,7 +77,7 @@ function SnackBar(props) {
       ]}>
       <TextInput
         multiline={true}
-        style={{color: '#fff'}}
+        style={{color: '#fff', fontSize: 16, fontWeight: '500'}}
         editable={false}
         ref={textref}></TextInput>
     </Animated.View>

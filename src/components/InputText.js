@@ -79,7 +79,6 @@ const InputText = props => {
                 borderRadius: 15,
                 marginVertical: 10,
               },
-              {style},
             ]}
             secureTextEntry={secureTextEntry}
             editable={editable}

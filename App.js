@@ -12,13 +12,17 @@ import SnackBar from './src/components/SnackBar';
 import UploadCamera from './src/screens/UploadCamera';
 import HomeScreen from './src/screens/HomeScreen';
 import EditProfile from './src/screens/EditProfile';
+// import Qrscreen from './src/screens/Qrscreen';
+import InitialScreen from './src/screens/InitialScreen';
 const Stack = createNativeStackNavigator();
 
 function App(props) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='InitialScreen'>
+        <Stack.Screen name="InitialScreen" component={InitialScreen} />
+        {/* <Stack.Screen name="Qrscreen" component={Qrscreen} /> */}
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen

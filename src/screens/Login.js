@@ -88,7 +88,7 @@ export default function VisitorRegisterScreen() {
             justifyContent: 'center',
           }}>
           <Text style={styles.registertext}>Don’t have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+          <TouchableOpacity onPress={() => null}>
             <Text style={styles.registertext2}>Sign up</Text>
           </TouchableOpacity>
         </View>
