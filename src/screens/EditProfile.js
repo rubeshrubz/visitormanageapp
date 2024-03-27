@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,8 @@ import {
   Alert,
   Dimensions,
   Image,
+  Modal,
+  FlatList,
 } from 'react-native';
 import InputText from '../components/InputText';
 import {Backbutton} from '../components/headerbackbutton';
@@ -19,12 +21,14 @@ import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import {icons} from '../components/Assets';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import countryList from 'react-select-country-list';
 
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
 export default function EditProfile() {
   const navigation = useNavigation();
+  const [modal, setModal] = useState(false);
   const [firstname, setfirstname] = useState('');
   const [mobilenumber, setmobilenumber] = useState('');
   const [Email, SetEmail] = useState('');
@@ -36,7 +40,7 @@ export default function EditProfile() {
   const [images, SetImages] = useState('');
   const [eye, setEye] = useState(true);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
+  const [country, setCountry] = useState('');
   const openFilePicker = async () => {
     if (Platform.OS == 'android') {
       requestMediaPermission();
@@ -135,7 +139,7 @@ export default function EditProfile() {
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
-
+  const [value, setValue] = useState('');
   const handleConfirm = date => {
     console.warn('A date has been picked: ', date);
 
@@ -152,6 +156,26 @@ export default function EditProfile() {
     setmeet(formattedDate);
     console.log('formattedDate=>', meet);
     hideDatePicker();
+  };
+
+  const options = useMemo(() => countryList().getData(), []);
+  console.log('options==>', options);
+
+  const changeHandler = value => {
+    setValue(value);
+  };
+
+  const _renderItem = item => {
+    return (
+      <View style={{flex: 1, width: '80%'}}>
+        <TouchableOpacity
+          onPress={() => (setCountry(item?.label), setModal(false))}>
+          <Text style={{fontSize: 18, color: '#4f81bd', fontWeight: 'bold'}}>
+            {item?.label}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   return (
@@ -207,8 +231,10 @@ export default function EditProfile() {
           <Text style={styles.text}>Country/Region</Text>
           <InputText
             onChangeText={text => setintime(text)}
-            value={intime}
+            value={country}
             placeholder={'Country/Region'}
+            date={true}
+            onPress={() => setModal(true)}
           />
           <TouchableOpacity
             onPress={() => {
@@ -226,6 +252,89 @@ export default function EditProfile() {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {
+          setModal(!modal);
+        }}>
+        {/* <TouchableWithoutFeedback
+      onPress={()=>setVisible(!visible)}
+      > */}
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <FlatList
+              keyExtractor={item => item.id}
+              data={options}
+              style={{flex: 1}}
+              renderItem={({item, index}) => _renderItem(item)}
+            />
+
+            {/* <Image
+              resizeMode="contain"
+              style={{height: '35%', width: '40%'}}
+              source={icons.condition}></Image>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: '#000',
+                top: 2,
+              }}>
+              Adding Images are mandatory
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 13,
+                fontWeight: '200',
+                color: '#000',
+                top: 4,
+              }}>
+              Both Front and Back are in{'\n'}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 12,
+                fontWeight: '200',
+                color: '#000',
+                bottom: 10,
+              }}>
+              types of PDF, JPG, and PNG.
+            </Text> */}
+
+            <TouchableOpacity
+              style={{
+                top: 10,
+                height: (Height / 80) * 3.5,
+                width: (Width / 80) * 9,
+                borderColor: '#357AB4',
+                borderRadius: 6,
+                borderWidth: 1,
+                justifyContent: 'center',
+                backgroundColor: '#357AB4',
+              }}
+              onPress={() => setModal(false)}>
+              <Text
+                style={{
+                  fontFamily: 'Roboto',
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                  textAlign: 'center',
+                }}>
+                OK
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* </TouchableWithoutFeedback> */}
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -291,5 +400,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,
+  },
+  //Modal
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    height: (Height / 16) * 8,
+    width: (Width / 10) * 8,
+    borderRadius: 30,
+    padding: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 });

@@ -19,7 +19,6 @@ function App(props) {
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen
@@ -30,6 +29,7 @@ function App(props) {
             name="VisitorDetailsScreen"
             component={VisitorDetailsScreen}
           />
+
           <Stack.Screen name="UploadCamera" component={UploadCamera} />
 
           <Stack.Screen name="ViewerScreen" component={ViewerScreen} />
@@ -37,7 +37,7 @@ function App(props) {
             name="VisitorCountScreen"
             component={VisitorCountScreen}
           />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
 
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
