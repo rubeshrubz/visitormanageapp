@@ -6,7 +6,9 @@ import SplashScreen from 'react-native-splash-screen';
 const InitialScreen = ({navigation}) => {
   useEffect(() => {
     SplashScreen.hide();
-    navigation.navigate('Login');
+    setTimeout(() => {
+      navigation.navigate('Login');
+    }, 2500);
   }, []);
   return (
     <View style={styles.container}>
