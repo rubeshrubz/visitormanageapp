@@ -6,19 +6,45 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 import {Backbutton} from '../components/headerbackbutton';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function ViewerScreen({route}) {
-  const files = route?.params;
-  console.log('files==>', files?.image1);
-  console.log('files==>', files?.image2);
+export default function ViewerScreen() {
+  const [files, setFile] = useState('');
+
+  useEffect(() => {
+    display();
+  }, []);
+
+  const display = async () => {
+    try {
+      let displays = await AsyncStorage.getItem('photo');
+      let image = JSON.parse(displays);
+      setFile(image);
+      console.log('image', image);
+    } catch {
+      console.log('error', error);
+    }
+  };
 
   const navigation = useNavigation();
+
+  const _validate = async () => {
+    try {
+      await AsyncStorage.removeItem('user');
+      await AsyncStorage.removeItem('photo');
+      console.log('Data removed');
+      navigation.navigate('Login');
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -74,7 +100,7 @@ export default function ViewerScreen({route}) {
             alignItems: 'center',
           }}>
           <Image
-            source={{uri: files?.image1}}
+            source={{uri: files?.Image1}}
             style={{height: '95%', width: '95%'}}
           />
         </View>
@@ -89,7 +115,7 @@ export default function ViewerScreen({route}) {
             alignItems: 'center',
           }}>
           <Image
-            source={{uri: files?.image2}}
+            source={{uri: files?.Image2}}
             style={{height: '95%', width: '95%'}}
           />
         </View>
@@ -101,9 +127,7 @@ export default function ViewerScreen({route}) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <TouchableOpacity
-          style={styles.subbutton}
-          onPress={() => navigation.navigate('MainScreen')}>
+        <TouchableOpacity style={styles.subbutton} onPress={() => _validate()}>
           <Text style={styles.subtext}>Submit</Text>
         </TouchableOpacity>
       </View>

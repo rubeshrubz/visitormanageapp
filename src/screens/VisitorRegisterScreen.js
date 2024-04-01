@@ -65,6 +65,19 @@ export default function VisitorRegisterScreen() {
     } else if (global.functions.isNullOrEmpty(intime)) {
       global.functions.ShowAlert('Please Enter In Time', global.const.warning);
     } else {
+      const store = {
+        firstname: firstname,
+        mobilenumber: mobilenumber,
+        civilid: civilid,
+        visit: visit,
+        meet: meet,
+        comapny: comapny,
+        intime: intime,
+      };
+
+      AsyncStorage.setItem('user', JSON.stringify(store));
+
+      console.log('store==>', store);
       navigation.navigate('UploadCamera');
     }
   };

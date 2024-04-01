@@ -17,6 +17,8 @@ import Button from '../components/Button';
 import RNFS from 'react-native-fs';
 import DocumentMasks from '../screens/DocumentMasks';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -129,10 +131,15 @@ export default function UploadCamera(props) {
 
   const _next = () => {
     if (firstImageUri && secondImageUri) {
-      navigation.navigate('ViewerScreen', {
-        image1: firstImageUri,
-        image2: secondImageUri,
-      });
+      //navigation.navigate('ViewerScreen')
+      const datas = {
+        Image1: firstImageUri,
+        Image2: secondImageUri,
+      };
+
+     AsyncStorage.setItem('photo', JSON.stringify(datas));
+      console.log('images', datas);
+      navigation.navigate('VisitorDetailsScreen');
     } else {
       setModal(!modal);
     }
@@ -145,7 +152,8 @@ export default function UploadCamera(props) {
           <Image
             resizeMode="contain"
             style={[styles.logoContainer]}
-            source={icons.closeImage}/>
+            source={icons.closeImage}
+          />
         </TouchableOpacity>
       </View>
 
@@ -277,7 +285,6 @@ export default function UploadCamera(props) {
         onRequestClose={() => {
           setVisible(!visible);
         }}>
-        
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Image
