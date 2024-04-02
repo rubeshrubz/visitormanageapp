@@ -14,6 +14,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import EditProfile from './src/screens/EditProfile';
 // import Qrscreen from './src/screens/Qrscreen';
 import InitialScreen from './src/screens/InitialScreen';
+import GetStart from './src/screens/GetStart';
 const Stack = createNativeStackNavigator();
 
 function App(props) {
@@ -21,6 +22,7 @@ function App(props) {
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='InitialScreen'>
+        <Stack.Screen name="GetStart" component={GetStart} />
         <Stack.Screen name="InitialScreen" component={InitialScreen} />
         {/* <Stack.Screen name="Qrscreen" component={Qrscreen} /> */}
           <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -44,6 +46,7 @@ function App(props) {
           <Stack.Screen name="EditProfile" component={EditProfile} />
 
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
+ 
         </Stack.Navigator>
         <SnackBar />
       </NavigationContainer>

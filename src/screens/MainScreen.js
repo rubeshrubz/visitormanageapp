@@ -16,7 +16,7 @@ const MainScreen = props => {
         />
         <Button
         text={'Super Admin'}
-        onPress={()=>navigation.navigate('Login')}
+        onPress={()=>navigation.navigate('Login')}                            
         />
         <Button
         text={'Visitor'}

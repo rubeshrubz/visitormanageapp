@@ -7,8 +7,8 @@ const InitialScreen = ({navigation}) => {
   useEffect(() => {
     SplashScreen.hide();
     setTimeout(() => {
-      navigation.navigate('Login');
-    }, 2500);
+      navigation.navigate('GetStart');
+    }, 2000);
   }, []);
   return (
     <View style={styles.container}>
