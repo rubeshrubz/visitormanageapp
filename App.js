@@ -15,15 +15,12 @@ import HomeScreen from './src/screens/HomeScreen';
 import EditProfile from './src/screens/EditProfile';
 import Qrscreen from './src/screens/Qrscreen';
 import InitialScreen from './src/screens/InitialScreen';
-<<<<<<< HEAD
 import GetStart from './src/screens/GetStart';
 import QRScanner from './src/screens/QRScanner';
-=======
 import LinearGradient from 'react-native-linear-gradient';
 import SmallCircle from './src/components/SmallCircle';
 import { icons } from './src/components/Assets';
 
->>>>>>> 1454130 (Home screen added with drawer screen)
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
