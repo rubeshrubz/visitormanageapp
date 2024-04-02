@@ -76,7 +76,6 @@ export default function VisitorRegisterScreen() {
       };
 
       AsyncStorage.setItem('user', JSON.stringify(store));
-
       console.log('store==>', store);
       navigation.navigate('UploadCamera');
     }
@@ -123,9 +122,9 @@ export default function VisitorRegisterScreen() {
           />
           <Text style={styles.text}>Company Name</Text>
           <InputText
+            placeholder={'Company Name'}
             onChangeText={text => setcompany(text)}
             value={comapny}
-            placeholder={'Company Name'}
           />
           <Text style={styles.text}>In Time</Text>
           <InputText

@@ -40,7 +40,7 @@ export default function VisitorDetailsScreen() {
       console.log('user==>', data);
       setName(data);
     } catch (error) {
-      alert(error);
+      Alert.alert(error);
     }
   };
 
