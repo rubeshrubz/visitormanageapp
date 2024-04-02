@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react';
 import Colors from '../components/Colors';
 import {icons} from '../components/Assets';
 import Button from '../components/Button';
+import LinearGradient from 'react-native-linear-gradient';
 export default function GetStart(props) {
 
     const [scaleAnim] = useState(new Animated.Value(0)) 
@@ -20,6 +21,9 @@ export default function GetStart(props) {
 
 
   return (
+    <LinearGradient
+    colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+    style={{flex: 1}}>
     <Animated.View               
       style={[
         styles.container,
@@ -37,20 +41,17 @@ export default function GetStart(props) {
       </View>
     </View>
     </Animated.View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.button_text,
-    // alignItems:'center',
-    // justifyContent:'center'
   },
   logoview: {
     flex: 0.5,
     width: '100%',
-    // borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   subtext: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color: '#2E44A2',
   },
   subbutton: {
     height: 60,

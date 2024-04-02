@@ -6,9 +6,9 @@ import SplashScreen from 'react-native-splash-screen';
 const InitialScreen = ({navigation}) => {
   useEffect(() => {
     SplashScreen.hide();
-    setTimeout(() => {
+    // setTimeout(() => {
       navigation.navigate('GetStart');
-    }, 2000);
+    // }, );
   }, []);
   return (
     <View style={styles.container}>
