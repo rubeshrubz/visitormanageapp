@@ -48,7 +48,7 @@ export default function VisitorRegisterScreen() {
         global.const.warning,
       );
     } else {
-      navigation.navigate('VisitorRegisterScreen');
+      navigation.navigate('HomeScreen');
     }
   };
 
