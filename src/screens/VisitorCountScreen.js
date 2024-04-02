@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, ScrollView ,TouchableOpacity,SafeAreaView } from 'react-native'
 import React from 'react'
-import Pie from 'react-native-pie'
+import PieChart from 'react-native-pie-chart'
 import LinearGradient from 'react-native-linear-gradient'
 import { Backbutton } from '../components/headerbackbutton'
 import { useNavigation } from '@react-navigation/native'
 const VisitorCountScreen = ()=> {
 const navigation = useNavigation()
+const widthAndHeight = 250
+const series = [123, 321, 123, 789]
+const sliceColor = ['#5ca9e9', '#0043ae', '#008fff','#223bc9']
   return (
     <SafeAreaView>
     <View style={styles.container}>
@@ -16,28 +19,15 @@ const navigation = useNavigation()
           <Text style={styles.titleText}>Visitor's Chart</Text>
       </LinearGradient>
     <View style={{alignItems: 'center' ,marginTop:20}}>
-      <Pie
-        radius={80}
-        sections={[
-          {
-            percentage: 5,
-            color: '#5ca9e9',
-          },
-          {
-            percentage: 15,
-            color: '#0043ae',
-          },
-          {
-            percentage: 21,
-            color: '#008fff',
-          },
-          {
-            percentage: 59,
-            color: '#223bc9',
-          },
-        ]}
-        strokeCap={'butt'}
-      />
+    <PieChart
+            widthAndHeight={widthAndHeight}
+            series={series}
+            sliceColor={sliceColor}
+            // coverRadius={0.45}
+            // coverFill={'#FFF'}
+          />
+
+
   <View style={styles.mainView}>
     <View style={styles.descView}>
         <View style={[styles.circle,{backgroundColor:'#5ca9e9'}]}></View>

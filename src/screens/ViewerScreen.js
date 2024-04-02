@@ -177,7 +177,7 @@ export default function ViewerScreen() {
                 justifyContent: 'center',
                 backgroundColor: '#357AB4',
               }}
-              onPress={() => setModal(false)}>
+              onPress={() => {setModal(false),navigation.navigate('MainScreen')}}>
               <Text
                 style={{
                   fontFamily: 'Roboto',

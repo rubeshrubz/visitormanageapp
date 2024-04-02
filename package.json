@@ -34,6 +34,7 @@
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-paper": "^5.12.3",
     "react-native-pie": "^1.1.2",
+    "react-native-pie-chart": "^3.0.2",
     "react-native-push-notification-popup": "^1.7.0",
     "react-native-qrcode-scanner": "^1.5.5",
     "react-native-qrcode-svg": "^6.3.0",

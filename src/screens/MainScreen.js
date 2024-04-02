@@ -20,7 +20,7 @@ const MainScreen = props => {
         />
         <Button
         text={'Visitor'}
-        onPress = {()=>navigation.navigate('Qrscreen')}
+        onPress = {()=>navigation.navigate('QRScanner')}
         />
         <Button
         text={'Security Staff'}
