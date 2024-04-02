@@ -20,7 +20,7 @@ import QRScanner from './src/screens/QRScanner';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallCircle from './src/components/SmallCircle';
 import { icons } from './src/components/Assets';
-
+import RegisterScreen from  './src/screens/RegisterScreen'
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
@@ -138,6 +138,7 @@ function App(props) {
           <Stack.Screen name="VisitorCountScreen" component={VisitorCountScreen} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen name="HomeScreen" component={myDrawer} />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
         </Stack.Navigator>
         <SnackBar/>
       </NavigationContainer>
