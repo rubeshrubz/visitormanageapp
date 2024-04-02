@@ -10,4 +10,5 @@ export const icons = {
   splash: require('../Assets/splash_screen.png'),
   getstart: require('../Assets/getstartimg.jpg'),
   focus: require('../Assets/focus.png'),
+  success: require('../Assets/lottie.json'),
 };
