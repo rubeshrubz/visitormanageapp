@@ -34,23 +34,23 @@ export default function VisitorRegisterScreen() {
     setusername(phoneNumber);
   };
 
-  const _vaildate = () => {
-    if (global.functions.isNullOrEmpty(username)) {
-      global.functions.ShowAlert(
-        'Please Enter mobilenumber',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(password)) {
-      global.functions.ShowAlert('Please Enter Password', global.const.warning);
-    } else if (password.length < 8) {
-      global.functions.ShowAlert(
-        ' Password Should be Minimum 8 char',
-        global.const.warning,
-      );
-    } else {
-      navigation.navigate('HomeScreen');
-    }
-  };
+  // const _vaildate = () => {
+  //   if (global.functions.isNullOrEmpty(username)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter mobilenumber',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(password)) {
+  //     global.functions.ShowAlert('Please Enter Password', global.const.warning);
+  //   } else if (password.length < 8) {
+  //     global.functions.ShowAlert(
+  //       ' Password Should be Minimum 8 char',
+  //       global.const.warning,
+  //     );
+  //   } else {
+  //     navigation.navigate('HomeScreen');
+  //   }
+  // };
 
   return (
     <KeyboardAwareScrollView>
@@ -75,7 +75,7 @@ export default function VisitorRegisterScreen() {
         />
         <TouchableOpacity
           onPress={() => {
-            _vaildate();
+            navigation.navigate('HomeScreen')
           }}
           style={styles.subbutton}>
           <Text style={styles.subtext}>Login</Text>

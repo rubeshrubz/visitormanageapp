@@ -90,7 +90,7 @@ const DrawerContents = (props) => {
   )
 }
 
-const myDrawer = () => {
+const MyDrawer = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <DrawerContents {...props} />}
@@ -137,7 +137,7 @@ function App(props) {
           <Stack.Screen name="ViewerScreen" component={ViewerScreen} />
           <Stack.Screen name="VisitorCountScreen" component={VisitorCountScreen} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
-          <Stack.Screen name="HomeScreen" component={myDrawer} />
+          <Stack.Screen name="HomeScreen" component={MyDrawer} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
         </Stack.Navigator>
         <SnackBar/>
