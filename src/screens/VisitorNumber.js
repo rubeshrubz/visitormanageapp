@@ -8,7 +8,7 @@ export default function VisitorNumber() {
     const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={'light-content'} backgroundColor={Colors.button_text} />
+      <StatusBar barStyle={'light-content'} backgroundColor={Colors.dark_button} />
       <View style={styles.cardview}>
       <Card Date={'23/06/2024'} Time={'10:00 AM'} Number={'01'} />
       <Button text={'Save Record'} onPress={null}/>

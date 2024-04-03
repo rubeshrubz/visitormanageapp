@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  StatusBar,
   Alert,
 } from 'react-native';
 import InputText from '../components/InputText';
@@ -15,7 +16,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-
+import Colors from '../components/Colors';
+import LinearGradient from 'react-native-linear-gradient';
 export default function VisitorRegisterScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -83,6 +85,10 @@ export default function VisitorRegisterScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+        <StatusBar
+          barStyle={'light-content'}
+          backgroundColor={Colors.dark_button}
+        />
       <View style={styles.button_cover}>
         <Backbutton onPress={() => navigation.goBack()} />
         <Text style={styles.profile_text}>Visitor's Register</Text>
@@ -132,6 +138,9 @@ export default function VisitorRegisterScreen() {
             value={intime}
             placeholder={'In Time'}
           />
+            <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
               _vaildate();
@@ -139,6 +148,7 @@ export default function VisitorRegisterScreen() {
             style={styles.subbutton}>
             <Text style={styles.subtext}>Submit</Text>
           </TouchableOpacity>
+          </LinearGradient>
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
@@ -153,7 +163,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#4f81bd',
+    color: Colors.dark_button,
     marginLeft: 20,
     marginVertical: 15,
   },
@@ -174,7 +184,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color: Colors.dark_button,
     marginHorizontal: 85,
   },
   subtext: {
@@ -187,7 +197,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#4f81bd',
+    // backgroundColor: '#4f81bd',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,

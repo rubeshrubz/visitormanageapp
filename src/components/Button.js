@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import Colors from "./Colors";
+import LinearGradient from 'react-native-linear-gradient';
 
 // const SemiBold = {fontFamily: 'Poppins-SemiBold'};
 const Height = Dimensions.get("screen").height;
@@ -28,11 +29,14 @@ const Button = (props) => {
 
   return (
     <View>
+    
       <TouchableOpacity onPress={onPress}>
+      <LinearGradient
+      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      style={styles.buttonView}>
         <View
           style={[
             styles.buttonView,
-            { backgroundColor: Colors.button_text },
             buttonStyle,
           ]}
         >
@@ -47,7 +51,9 @@ const Button = (props) => {
             </Text>
           </View>
         </View>
+        </LinearGradient>
       </TouchableOpacity>
+
     </View>
   );
 };

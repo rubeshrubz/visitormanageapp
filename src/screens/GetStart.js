@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Animated,
+  StatusBar
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Colors from '../components/Colors';
@@ -28,6 +29,10 @@ export default function GetStart(props) {
     <LinearGradient
       colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
       style={{flex: 1}}>
+          <StatusBar
+        barStyle={'light-content'}
+        backgroundColor={Colors.dark_button}
+      />
       <Animated.View
         style={[styles.container, {transform: [{scale: scaleAnim}]}]}>
         <View style={styles.container}>

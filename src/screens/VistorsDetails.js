@@ -15,7 +15,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-
+import Colors from '../components/Colors';
+import LinearGradient from 'react-native-linear-gradient';
 export default function VisitorDetailsScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -94,6 +95,9 @@ export default function VisitorDetailsScreen() {
             value={names?.intime}
             placeholder={'In Time'}
           />
+           <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('ViewerScreen');
@@ -101,6 +105,7 @@ export default function VisitorDetailsScreen() {
             style={styles.subbutton}>
             <Text style={styles.subtext}>Submit</Text>
           </TouchableOpacity>
+          </LinearGradient>
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
@@ -115,7 +120,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#4f81bd',
+    color: Colors.dark_button,
     marginLeft: 20,
     marginVertical: 15,
   },
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color: Colors.dark_button,
     marginHorizontal: 100,
   },
   subtext: {
@@ -149,7 +154,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#4f81bd',
+    // backgroundColor: '#4f81bd',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,

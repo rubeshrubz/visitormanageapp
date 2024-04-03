@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import IntlPhoneInput from 'react-native-intl-phone-input';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Colors from './Colors';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
@@ -98,9 +99,9 @@ const InputText = props => {
               onPress={onPress}
               keyboardType={keyboardType}>
               {visible == true ? (
-                <Icon name={'eye-off'} size={22} color={'#4f81bd'} />
+                <Icon name={'eye-off'} size={22} color={Colors.dark_button} />
               ) : (
-                <Icon name={'eye-check'} size={23} color={'#4f81bd'} />
+                <Icon name={'eye-check'} size={23} color={Colors.dark_button} />
               )}
             </TouchableOpacity>
           )}

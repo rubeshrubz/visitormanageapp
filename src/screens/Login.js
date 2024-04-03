@@ -14,6 +14,8 @@ import {
 import InputText from '../components/InputText';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import LinearGradient from 'react-native-linear-gradient';
+import Colors from '../components/Colors';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorRegisterScreen() {
@@ -55,7 +57,10 @@ export default function VisitorRegisterScreen() {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle={'light-content'} backgroundColor={'#4f81bd'} />
+        <StatusBar
+          barStyle={'light-content'}
+          backgroundColor={Colors.dark_button}
+        />
         {/* <View style={styles.inputview}> */}
         <Text style={styles.text}>Moblie Number</Text>
         <InputText
@@ -73,13 +78,17 @@ export default function VisitorRegisterScreen() {
           onPress={() => setshow(!show)}
           secureTextEntry={show}
         />
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('HomeScreen')
-          }}
+        <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
           style={styles.subbutton}>
-          <Text style={styles.subtext}>Login</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('HomeScreen');
+            }}
+            style={styles.subbutton}>
+            <Text style={styles.subtext}>Login</Text>
+          </TouchableOpacity>
+        </LinearGradient>
         {/* </View> */}
         <View
           style={{
@@ -88,7 +97,8 @@ export default function VisitorRegisterScreen() {
             justifyContent: 'center',
           }}>
           <Text style={styles.registertext}>Don’t have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RegisterScreen')}>
             <Text style={styles.registertext2}>Sign up</Text>
           </TouchableOpacity>
         </View>
@@ -106,7 +116,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#4f81bd',
+    color: Colors.dark_button,
     marginLeft: 22,
     marginVertical: 10,
   },
@@ -121,7 +131,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#4f81bd',
+    // backgroundColor: '#4f81bd',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
@@ -138,6 +148,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // marginVertical: 10,
     fontSize: 16,
-    color: '#4f81bd',
+    color: Colors.dark_button,
   },
 });

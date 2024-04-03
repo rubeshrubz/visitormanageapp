@@ -16,7 +16,7 @@ export default function AttachFile() {
     <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={Colors.button_text}
+        backgroundColor={Colors.dark_button}
       />
       <View style={styles.button_cover}>
         <Backbutton onPress={() => navigation.goBack()} />
@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.button_text,
+    color: Colors.dark_button,
     marginHorizontal: 70,
   },
   civilidtext: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: Colors.button_text,
+    color: Colors.dark_button,
     marginLeft: 15,
     marginVertical: 15,
   },
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   choosefile: {
     height: 35,
     width: '25%',
-    backgroundColor: Colors.button_text,
+    backgroundColor: Colors.dark_button,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,

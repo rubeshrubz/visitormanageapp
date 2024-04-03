@@ -13,6 +13,7 @@ import {RNCamera} from 'react-native-camera';
 import {useNavigation} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {icons} from '../components/Assets/index';
+import Colors from '../components/Colors';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color:Colors.dark_button,
     marginHorizontal: 120,
   },
   centerText: {
