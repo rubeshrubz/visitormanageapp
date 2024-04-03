@@ -22,6 +22,7 @@ import SmallCircle from './src/components/SmallCircle';
 import { icons } from './src/components/Assets';
 import RegisterScreen from  './src/screens/RegisterScreen';
 import AttachFile from './src/screens/AttachFile';
+import VisitorNumber from './src/screens/VisitorNumber';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
@@ -141,6 +142,7 @@ function App(props) {
           <Stack.Screen name="HomeScreen" component={MyDrawer} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
           <Stack.Screen name="AttachFile" component={AttachFile}/>
+          <Stack.Screen name="VisitorNumber" component={VisitorNumber}/>
         </Stack.Navigator>
         <SnackBar/>
       </NavigationContainer>
