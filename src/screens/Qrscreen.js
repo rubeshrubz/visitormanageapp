@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import {useNavigation} from '@react-navigation/native';
@@ -13,13 +13,16 @@ export default function Qrscreen() {
     // }, 2500);
   }, []);
 
+
   return (
     <View style={styles.container}>
       <QRCode
-      //  value={navigation.navigate('Login')}
+        value={'Register'}
         size={200}
         logoSize={30}
         logoBackgroundColor="transparent"
+        onRead={onSuccess}
+       
       />
     </View>
   );

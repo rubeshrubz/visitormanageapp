@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Alert,
 } from 'react-native';
 import {Backbutton} from '../components/headerbackbutton';
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -29,26 +30,44 @@ export default function QRScanner() {
     // }, 2500);
   }, []);
 
-  const onSuccess = e => {
-    try {
-      setActivateQR(false);
-      navigation.navigate('VisitorRegisterScreen');
-    } catch (e) {
-      global.functions.ShowAlert('Invalid qr code', global.const.warning);
-      setTimeout(() => {
-        scanner.current.reactivate();
-      }, 3000);
-    }
-  };
-
   const CustomMarker = () => (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Image
-        style={{width: (width /30) *8, height: (height / 15) *2,tintColor:'#2B8ADD'}}
+        style={{
+          width: (width / 30) * 8,
+          height: (height / 15) * 2,
+          tintColor: '#2B8ADD',
+        }}
         source={icons.focus}
       />
     </View>
   );
+
+  const [register, setRegister] = useState('');
+
+  useEffect(() => {
+    setRegister('');
+    setActivateQR(true);
+  }, [activateQR, register]);
+
+  const onSuccess = e => {
+    console.log('data===>', register);
+    try {
+      setActivateQR(false);
+      setRegister(e.data);
+
+      if (e.data === 'Register') {
+        navigation.navigate('VisitorRegisterScreen');
+      } else {
+        Alert.alert('QR Code is invalid');
+      }
+      //navigation.navigate('AttachFile');
+    } catch (e) {
+      global.functions.ShowAlert('Invalid qr code', global.const.warning);
+
+      scanner.current.reactivate();
+    }
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -63,7 +82,6 @@ export default function QRScanner() {
         <QRCodeScanner
           ref={scanner}
           onRead={onSuccess}
-          
           // cameraStyle={{height: SCREEN_HEIGHT}}
           customMarker={<CustomMarker />}
           cameraProps={{
@@ -73,6 +91,9 @@ export default function QRScanner() {
           containerStyle={{height: 300}}
           cameraStyle={[{height: 300}]}
           showMarker={true}
+          bottomContent={
+            <Text style={styles.text}>Scanned QR Code: {register}</Text>
+          }
           reactivate={activateQR}></QRCodeScanner>
       </View>
     </View>
@@ -90,7 +111,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color:Colors.dark_button,
+    color: Colors.dark_button,
     marginHorizontal: 120,
   },
   centerText: {
