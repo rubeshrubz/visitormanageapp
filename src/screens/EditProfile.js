@@ -22,6 +22,7 @@ import RNFS from 'react-native-fs';
 import {icons} from '../components/Assets';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import countryList from 'react-select-country-list';
+import AppHeader from '../components/AppHeader';
 
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
@@ -170,7 +171,7 @@ export default function EditProfile() {
       <View style={{flex: 1, width: '80%'}}>
         <TouchableOpacity
           onPress={() => (setCountry(item?.label), setModal(false))}>
-          <Text style={{fontSize: 18, color: '#4f81bd', fontWeight: 'bold'}}>
+          <Text style={{fontSize: 18, color: '#2D2B89', fontWeight: 'bold'}}>
             {item?.label}
           </Text>
         </TouchableOpacity>
@@ -180,11 +181,7 @@ export default function EditProfile() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.button_cover}>
-        <Backbutton onPress={() => navigation.goBack()} />
-        <Text style={styles.profile_text}>EditProfile</Text>
-      </View>
-
+      <AppHeader title={'Edit Profile'}/>
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
           <View style={styles.avatarCard}>
@@ -352,7 +349,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#4f81bd',
+    color: '#2D2B89',
     marginLeft: 20,
     marginVertical: 15,
   },
@@ -373,10 +370,10 @@ const styles = StyleSheet.create({
     top: 10,
   },
   avatar: {
-    width: (Width / 22) * 6.2,
-    height: (Height / 42) * 6.2,
+    width: (Width / 22) * 6.5,
+    height: (Height / 42) * 6,
     borderRadius: Width / 2,
-    borderColor: '#242760',
+    borderColor: '#2D2B89',
     borderWidth:1,
     backgroundColor: 'grey',
   },
@@ -397,7 +394,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color: '#2D2B89',
     marginHorizontal: 130,
   },
   subtext: {
@@ -410,7 +407,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#4f81bd',
+    backgroundColor: '#2D2B89',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,

@@ -15,6 +15,7 @@ import LottieView from 'lottie-react-native';
 import {Backbutton} from '../components/headerbackbutton';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppHeader from '../components/AppHeader';
 
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
@@ -81,11 +82,7 @@ export default function ViewerScreen() {
             Document Preview
           </Text>
         </View> */}
-
-        <View style={styles.button_cover}>
-          <Backbutton onPress={() => navigation.goBack()} />
-          <Text style={styles.profile_text}>Document Preview</Text>
-        </View>
+        <AppHeader title={"Document Preview"}/>
       </View>
       <View
         style={{
@@ -228,7 +225,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#004999',
+    backgroundColor: '#2D2B89',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -242,7 +239,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4f81bd',
+    color:'#2D2B89',
     marginHorizontal: 85,
   },
 });
