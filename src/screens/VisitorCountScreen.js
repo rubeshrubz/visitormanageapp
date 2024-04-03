@@ -4,6 +4,7 @@ import PieChart from 'react-native-pie-chart'
 import LinearGradient from 'react-native-linear-gradient'
 import { Backbutton } from '../components/headerbackbutton'
 import { useNavigation } from '@react-navigation/native'
+import Arrow from 'react-native-vector-icons/AntDesign';
 const VisitorCountScreen = ()=> {
 const navigation = useNavigation()
 const widthAndHeight = 250
@@ -14,10 +15,14 @@ const sliceColor = ['#5ca9e9', '#0043ae', '#008fff','#223bc9']
     <View style={styles.container}>
     <LinearGradient
       colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
-      style={{  alignItems: 'center',justifyContent:'center',flexDirection:'row',width:'100%',height:80}}>
-         <Backbutton onPress={() => navigation.goBack()} />
-          <Text style={styles.titleText}>Visitor's Chart</Text>
+      style={{  alignItems: 'center',flexDirection:'row',width:'100%',height:80}}>
+         <TouchableOpacity style={{margin:25,flex:0.2}}  onPress={() => navigation.goBack()}>
+          <Arrow name={'arrowleft'} size={20} color={'#fff'}/>
+           {/* <Image source={require('../components/Assets/menu.png')} style={{height:30,width:30}}/> */}
+         </TouchableOpacity>
+         <Text style={styles.titleText}>Visitor's Chart</Text>
       </LinearGradient>
+
     <View style={{alignItems: 'center' ,marginTop:20}}>
     <PieChart
             widthAndHeight={widthAndHeight}
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff'
   }, 
   titleText:{
-    fontSize:20,fontWeight:'bold',margin:20,color:"#fff",alignSelf:'center'
+    fontSize:20,fontWeight:'bold',margin:20,color:"#fff",alignSelf:'center',flex:0.7
   },
   descView: {
     flexDirection:'row',justifyContent:'center',alignItems:'center'

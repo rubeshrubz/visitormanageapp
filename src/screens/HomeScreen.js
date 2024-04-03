@@ -15,7 +15,7 @@ const HomeScreen=() =>{
            <Image source={require('../components/Assets/menu.png')} style={{height:30,width:30}}/>
          </TouchableOpacity>
          <Text style={{flex:0.7,color:'#fff',fontSize:20,fontWeight:'bold',alignSelf:'center'}}>Visitor's Management</Text>
-         <Ionicon  name ={'notifications-outline'} size={20} color={'#fff'}/>
+         <Ionicon  name ='notifications-outline' size={20} color={'#fff'}/>
       </LinearGradient>
     </View>
   )
