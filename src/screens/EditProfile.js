@@ -23,7 +23,7 @@ import {icons} from '../components/Assets';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import countryList from 'react-select-country-list';
 import AppHeader from '../components/AppHeader';
-
+import LinearGradient from 'react-native-linear-gradient';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
@@ -238,6 +238,9 @@ export default function EditProfile() {
             date={true}
             onPress={() => setModal(true)}
           />
+           <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
               _validate();
@@ -245,6 +248,14 @@ export default function EditProfile() {
             style={styles.subbutton}>
             <Text style={styles.subtext}>Save Changes</Text>
           </TouchableOpacity>
+          </LinearGradient>
+          {/* <TouchableOpacity
+            onPress={() => {
+              _validate();
+            }}
+            style={styles.subbutton}>
+            <Text style={styles.subtext}>Save Changes</Text>
+          </TouchableOpacity> */}
         </KeyboardAvoidingView>
       </ScrollView>
 
@@ -335,7 +346,7 @@ export default function EditProfile() {
           </View>
         </View>
 
-        {/* </TouchableWithoutFeedback> */}
+   
       </Modal>
     </SafeAreaView>
   );
@@ -404,10 +415,10 @@ const styles = StyleSheet.create({
   },
   subbutton: {
     height: 45,
-    width: '90%',
+    width: '80%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#2D2B89',
+  //  backgroundColor: '#2D2B89',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 50,

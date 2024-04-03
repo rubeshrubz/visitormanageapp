@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { View, Text, SafeAreaView, FlatList,StyleSheet, Image,TouchableOpacity,Dimensions} from 'react-native';
+import React,{useState} from 'react';
+import { View, Text,Pressable, SafeAreaView, FlatList,StyleSheet, Image,TouchableOpacity,Dimensions,Modal} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator,DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
@@ -59,8 +59,9 @@ const data = [
 
 const DrawerContents = (props) => {
   const navigation = useNavigation()
+  const [modalVisible, setModalVisible] = useState(false);
   const onClickDrawer = (item) => {
-   item.id == 1 ? navigation.navigate('VisitorCountScreen') : item.id == 3 ? navigation.navigate('EditProfile') : null
+   item.id == 1 ? navigation.navigate('VisitorCountScreen') : item.id == 3 ? navigation.navigate('EditProfile') : item.id == 6 ? setModalVisible(true) : null
     }
   return (
       <LinearGradient
@@ -89,6 +90,46 @@ const DrawerContents = (props) => {
                 </View>}
                 keyExtractor={item => item.id}
             />
+            
+        <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Are you sure you want to logout?</Text>
+            <View style={{flexDirection:'row'}}>
+              <LinearGradient
+                colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+                style={styles.subbutton}>
+              <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Login')
+            }}
+            style={styles.subbutton}>
+            <Text style={styles.subtext}>Yes</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+          <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          style={styles.subbutton}>
+          <TouchableOpacity
+            onPress={() => {
+              setModalVisible(!modalVisible)
+            }}
+            style={styles.subbutton}>
+            <Text style={styles.subtext}>No</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+            </View>
+          </View>
+        </View>
+      </Modal>
+           
       </LinearGradient>
   )
 }
@@ -158,5 +199,61 @@ const styles = StyleSheet.create({
     borderColor: '#242760',
     borderWidth: 1,
     backgroundColor: '#fff',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    backgroundColor:"rgba(0,0,0,0.7)"
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width:'80%'
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color:'#000',
+    fontWeight:'800',
+    fontSize:18
+
+  },
+  subtext: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  subbutton: {
+    height: 45,
+    width: '40%',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',margin:10
   },
 })
