@@ -43,7 +43,7 @@ export default function GetStart(props) {
             <TouchableOpacity
               onPress={() => navigation.navigate('MainScreen')}
               style={styles.subbutton}>
-              <Text style={styles.subtext}>Get Start</Text>
+              <Text style={styles.subtext}>Get Started</Text>
             </TouchableOpacity>
           </View>
         </View>

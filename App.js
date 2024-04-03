@@ -67,16 +67,16 @@ const DrawerContents = (props) => {
       colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <View style={{flex:0.5,alignItems:'center',justifyContent:'center'}}>
-        <Image
+          <Image
                 style={styles.avatar}
                 source={icons.pic}
-              />
+          />
           <Text style={{color:'#fff',fontWeight:'700',fontSize:16,marginTop:10}}>Hello user</Text>
         </View>
            <FlatList
                 data={data}
                 style={{ margin: 10 }}
-                renderItem={({item}) =>    
+                renderItem = {({item}) =>    
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginLeft: 16 ,marginTop:20}}>
                   <SmallCircle color="#fff" />
                   <TouchableOpacity onPress={()=> onClickDrawer(item)}>
@@ -105,17 +105,14 @@ const MyDrawer = () => {
           borderWidth: 1,
           justifyContent: 'center'
         },
-
         drawerStyle: {
           backgroundColor:'#fff',
           width: 250,
         },
-
         drawerLabelStyle: {
           fontSize: 17,
           color: '#fff',
         },
-
       }}>
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
     </Drawer.Navigator>
@@ -159,7 +156,7 @@ const styles = StyleSheet.create({
     height: (Height / 40) * 5,
     borderRadius: Width / 2,
     borderColor: '#242760',
-    borderWidth:1,
+    borderWidth: 1,
     backgroundColor: '#fff',
   },
 })

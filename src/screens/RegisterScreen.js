@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import LinearGradient from 'react-native-linear-gradient';
-
+import AppHeader from '../components/AppHeader';
 export default function RegisterScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -83,10 +83,7 @@ export default function RegisterScreen() {
           barStyle={'light-content'}
           backgroundColor={Colors.dark_button}
         />
-      <View style={styles.button_cover}>
-        <Backbutton onPress={() => navigation.goBack()} />
-        <Text style={styles.profile_text}>Visitor's Register</Text>
-      </View>
+       <AppHeader title={'Admin Register'}/>
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
           <Text style={styles.text}>Name</Text>
@@ -95,7 +92,7 @@ export default function RegisterScreen() {
             value={firstname}
             placeholder={'Name'}
           />
-          <Text style={styles.text}>Moblie Number</Text>
+          <Text style={styles.text}>Mobile Number</Text>
           <InputText
             value={mobilenumber}
             // placeholder={'Moblie Number'}

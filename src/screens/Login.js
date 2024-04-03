@@ -62,7 +62,7 @@ export default function VisitorRegisterScreen() {
           backgroundColor={Colors.dark_button}
         />
         {/* <View style={styles.inputview}> */}
-        <Text style={styles.text}>Moblie Number</Text>
+        <Text style={styles.text}>Mobile Number</Text>
         <InputText
           onChangeNumber={text => onChangeNumber(text)}
           value={username}

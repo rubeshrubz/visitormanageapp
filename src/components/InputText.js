@@ -71,7 +71,7 @@ const InputText = props => {
             style={[
               {
                 height: (Height / 50) * 3,
-                width: (Width / 3.52) * 3,
+                width: (Width / 3.52) * 2.8,
                 // borderWidth: 1,
                 fontSize: 15,
                 fontWeight: 'bold',

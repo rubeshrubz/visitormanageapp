@@ -73,7 +73,6 @@ const HomeScreen=() =>{
            <Ionicon  name ='notifications-outline' size={25} color={'#fff'} style={{fontWeight:'900'}}/>
          </TouchableOpacity>
       </LinearGradient>
-      <ScrollView>
       <View style={styles.countCard}> 
          <Text style={styles.cardText}>Total Number of Visitor's Today: 25</Text>
          <Text style={styles.cardText}>Current Visitor's: 6</Text>
@@ -84,11 +83,11 @@ const HomeScreen=() =>{
             <Calendar name={'calendar'} size={25} color='#2D2B89'/>
          </TouchableOpacity>
       </View>
-         <View style={{backgroundColor:'#2D2B89',borderRadius:15}}>
+         <View style={{backgroundColor:'#2D2B89',borderRadius:15,width:'95%'}}>
          <FlatList
                 data={data}
                 renderItem={({item}) =>    
-                <View style={{ flex:1,backgroundColor:'#fff',borderRadius:15,margin:5,flexDirection:'row',padding:10}}>
+                <View style={{backgroundColor:'#fff',borderRadius:15,margin:5,flexDirection:'row',padding:10}}>
                 <View style={{flex:0.55}}>
                 <Text style={styles.textStyle}>{item.visitorName}</Text>
                 <Text style={styles.textStyle}>{item.inTime}</Text>
@@ -118,12 +117,7 @@ const HomeScreen=() =>{
                }
                 keyExtractor={item => item.id}
             />
-       
-
          </View>
-
- 
-      </ScrollView>
     </View>
   )
 }
@@ -134,7 +128,7 @@ const styles = StyleSheet.create({
     flex:0.7,color:'#fff',fontSize:20,fontWeight:'bold',alignSelf:'center'
   },
   countCard:{
-    backgroundColor:'#2D2B89',marginVertical:15,borderRadius:10,justifyContent:'center',alignItems:'center',width:'100%',height:'15%'
+    backgroundColor:'#2D2B89',marginVertical:15,borderRadius:10,justifyContent:'center',alignItems:'center',width:'95%',height:'15%'
   },
   cardText:{
     fontSize:17,color:'#fff',fontWeight:'800',margin:5
