@@ -36,7 +36,7 @@ export default function GetStart(props) {
           </View>
           <View style={styles.logoview}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('MainScreen')}
+              onPress={() => navigation.navigate('AttachFile')}
               style={styles.subbutton}>
               <Text style={styles.subtext}>Get Start</Text>
             </TouchableOpacity>
