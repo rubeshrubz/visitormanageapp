@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Colors.white,
     paddingVertical: 5,
+    
     fontWeight: "900",
     //  textTransform:'capitalize'
     fontFamily: "Roboto-Bold",

@@ -7,6 +7,7 @@ import {
   PermissionsAndroid,
   Modal,
   Image,
+  Platform,
   Alert,
 } from 'react-native';
 import React, {useRef, useState, useEffect} from 'react';
@@ -23,6 +24,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function UploadCamera(props) {
+  const details = props?.route?.params?.image;
+
+  // console.log('details==>', details);
+
   const [visible, setVisible] = useState(false);
   const [modal, setModal] = useState(false);
   const navigation = useNavigation();
@@ -65,8 +70,9 @@ export default function UploadCamera(props) {
               console.log('frontpage==>####', resp[0]?.uri?.length);
               // props.navigation.navigate('ViewerScreen', {
               //   file: resp[0],
-              // });
-              if (capturingFirstImage) {
+              // })
+
+              if (details == 'Image1') {
                 setFirstImageUri(resp[0]?.uri);
                 setCapturingFirstImage(false);
               } else {
@@ -116,7 +122,7 @@ export default function UploadCamera(props) {
       try {
         const options = {quality: 0.5, base64: true};
         const capturedImage = await camRef.current.takePictureAsync(options);
-        if (capturingFirstImage) {
+        if (details == 'Image1') {
           setFirstImageUri(capturedImage.uri);
           setCapturingFirstImage(false);
         } else {
@@ -129,19 +135,31 @@ export default function UploadCamera(props) {
     }
   };
 
-  const _next = () => {
-    if (firstImageUri && secondImageUri) {
-      //navigation.navigate('ViewerScreen')
-      const datas = {
-        Image1: firstImageUri,
-        Image2: secondImageUri,
-      };
+  const _next = async() => {
+    // if (firstImageUri && secondImageUri) {
+    //   //navigation.navigate('ViewerScreen')
+    //   const datas = {
+    //     Image1: firstImageUri,
+    //     Image2: secondImageUri,
+    //   };
 
-     AsyncStorage.setItem('photo', JSON.stringify(datas));
-      console.log('images', datas);
-      navigation.navigate('VisitorDetailsScreen');
-    } else {
-      setModal(!modal);
+    //   AsyncStorage.setItem('photo', JSON.stringify(datas));
+    //   console.log('images', datas);
+    //   navigation.navigate('VisitorDetailsScreen');
+    // } else {
+    //   setModal(!modal);
+    // }
+
+    if (details == 'Image1') {
+      const data1 = firstImageUri;
+
+      await AsyncStorage.setItem('Image1', data1);
+
+      navigation.navigate('AttachFile');
+    } else if (details == 'Image2') {
+      const data2 = secondImageUri;
+      await AsyncStorage.setItem('Image2', data2);
+      navigation.navigate('AttachFile');
     }
   };
 
@@ -168,7 +186,7 @@ export default function UploadCamera(props) {
         <DocumentMasks />
 
         <View style={{flex: 0.3, flexDirection: 'row', top: 5}}>
-          {firstImageUri && (
+          {firstImageUri && details == 'Image1' ? (
             <View
               style={{
                 flex: 0.5,
@@ -188,9 +206,9 @@ export default function UploadCamera(props) {
                 <Image source={icons.close} style={{width: 20, height: 20}} />
               </TouchableOpacity>
             </View>
-          )}
+          ) : null}
 
-          {secondImageUri && (
+          {secondImageUri && details == 'Image2' ? (
             <View
               style={{
                 flex: 0.5,
@@ -213,7 +231,7 @@ export default function UploadCamera(props) {
                 />
               </TouchableOpacity>
             </View>
-          )}
+          ) : null}
         </View>
       </RNCamera>
       <Text

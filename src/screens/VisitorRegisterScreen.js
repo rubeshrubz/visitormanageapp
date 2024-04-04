@@ -146,7 +146,8 @@ export default function VisitorRegisterScreen() {
           style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
-              _vaildate();
+            //  _vaildate();
+            navigation.navigate("AttachFile")
             }}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Submit</Text>
