@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,9 +16,10 @@ import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../components/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
-export default function VisitorRegisterScreen() {
+export default function VisitorRegisterScreen(props) {
   const navigation = useNavigation();
   const [mobilenumber, setmobilenumber] = useState('');
   const [show, setshow] = useState(true);
@@ -26,6 +27,7 @@ export default function VisitorRegisterScreen() {
   const [eye, setEye] = useState(true);
   const [username, setusername] = React.useState('');
   const [dialCode, Setdialcode] = React.useState('');
+
   const secureText = () => {
     setEye(!eye);
   };
@@ -82,9 +84,8 @@ export default function VisitorRegisterScreen() {
           colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
           style={styles.subbutton}>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('HomeScreen');
-            }}
+            onPress={() => 
+              navigation.navigate('HomeScreen')}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Login</Text>
           </TouchableOpacity>

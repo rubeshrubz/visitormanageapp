@@ -3,8 +3,21 @@ import React from 'react';
 import Button from '../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const MainScreen = props => {
   const navigation = useNavigation();
+
+  const onClickBuildingAdmin= () => {
+    AsyncStorage.setItem( '@MySuperStore:key', 'Admin')
+   navigation.navigate('Login')
+  }
+
+  const onClickSecurity = () => {
+    AsyncStorage.setItem( '@MySuperStore:key', 'Security')
+   navigation.navigate('Login')
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -23,11 +36,11 @@ const MainScreen = props => {
         </Text>
         <Button
           text={'Building Admin'}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => onClickBuildingAdmin()}
         />
         <Button
           text={'Super Admin'}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => onClickBuildingAdmin()}
         />
         <Button
           text={'Visitor'}
@@ -35,7 +48,7 @@ const MainScreen = props => {
         />
         <Button
           text={'Security Staff'}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => onClickSecurity()}
         />
       </View>
     </SafeAreaView>

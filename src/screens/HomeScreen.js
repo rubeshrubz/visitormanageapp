@@ -1,21 +1,38 @@
-import {useNavigation} from '@react-navigation/native';
-import * as React from 'react';
-import {
-  Button,
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-  FlatList,
-} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+
+import { useNavigation } from '@react-navigation/native';
+import React,{useEffect, useState} from 'react';
+import { Button, View,StyleSheet, Text, TouchableOpacity ,Image,FlatList,Alert} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import Calendar from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+const HomeScreen=(props) =>{
+  const navigation = useNavigation()
+
+  const asyncc = '@MySuperStore:key'
+  const [demo, setdemo] = useState('');
+
+  var retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(asyncc);
+      if (value !== null) {
+        console.log("Result",value,demo);
+      }
+      setdemo(value)
+    } catch (error) {
+     console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (!demo) {
+      retrieveData();
+    }
+  }, [demo])
+
+  
   const data = [
     {
       id: '1',
@@ -85,88 +102,43 @@ const HomeScreen = () => {
   ];
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <View style={{flex: 0.1}}>
-        <LinearGradient
-          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
-          style={{
-            alignItems: 'center',
-            flexDirection: 'row',
-            width: '100%',
-          }}>
-          <TouchableOpacity
-            style={{margin: 25, flex: 0.2}}
-            onPress={() => navigation.openDrawer()}>
-            <Image
-              source={require('../components/Assets/menu.png')}
-              style={{height: 30, width: 30}}
-            />
-          </TouchableOpacity>
-          <Text style={styles.titleText}>Visitor's Management</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('NotificationScreen')}>
-            <Ionicon
-              name="notifications-outline"
-              size={25}
-              color={'#fff'}
-              style={{fontWeight: '900'}}
-            />
-          </TouchableOpacity>
-        </LinearGradient>
-      </View>
+    <View style={{ flex: 1, alignItems: 'center',backgroundColor:'#fff'}}>
+       <LinearGradient
+      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      style={{  alignItems: 'center',flexDirection:'row',width:'100%',height:80}}>
+         <TouchableOpacity style={{margin:25,flex:0.2}}  onPress={() => navigation.openDrawer()}>
+           <Image source={require('../components/Assets/menu.png')} style={{height:30,width:30}}/>
+         </TouchableOpacity>
+         <Text style={styles.titleText}>Visitor's Management</Text>
+         <TouchableOpacity onPress={()=> navigation.navigate('NotificationScreen')}>
+           <Ionicon  name ='notifications-outline' size={25} color={'#fff'} style={{fontWeight:'900'}}/>
+         </TouchableOpacity>
+      </LinearGradient>
 
-      <View
-        style={{
-          flex: 0.2,
-          backgroundColor: '#FFF',
-          padding: 10,
-          alignContent: 'center',
-          justifyContent: 'center',
-        }}>
-        <View style={styles.countCard}>
-          <Text style={styles.cardText}>
-            Total Number of Visitor's Today: 25
-          </Text>
-          <Text style={styles.cardText}>Current Visitor's: 6</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            margin: 5,
-            left: 10,
-          }}>
-          <Text style={styles.cardTitletext}>Visitor List</Text>
-          <TouchableOpacity style={{width: '10%', marginLeft: 20}}>
-            <Calendar name={'calendar'} size={25} color="#2D2B89" />
-          </TouchableOpacity>
-        </View>
+   {demo === "Admin" ? <>
+   <LinearGradient
+      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      style={styles.countCard}> 
+         <Text style={styles.cardText}>Total Number of Visitor's Today: 25</Text>
+         <Text style={styles.cardText}>Current Visitor's: 6</Text>
+         </LinearGradient>
+      <View style={{flexDirection:'row',alignItems:'center',margin:5}}>
+         <Text style={styles.cardTitletext}>Visitor List</Text>
+         <TouchableOpacity style={{width:'10%',marginLeft:0}}>
+            <Calendar name={'calendar'} size={25} color='#2D2B89'/>
+         </TouchableOpacity>
       </View>
-
-      <View style={{flex: 0.7, padding: 15}}>
-        <View
-          style={{
-            backgroundColor: '#2D2B89',
-            borderRadius: 15,
-            padding: 20,
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}>
-          <FlatList
-            data={data}
-            renderItem={({item}) => (
-              <View
-                style={{
-                  backgroundColor: '#fff',
-                  borderRadius: 15,
-                  margin: 5,
-                  flexDirection: 'row',
-                  padding: 10,
-                }}>
-                <View style={{flex: 0.55}}>
-                  <Text style={styles.textStyle}>{item.visitorName}</Text>
-                  <Text style={styles.textStyle}>{item.inTime}</Text>
-                  <Text style={styles.textStyle}>{item.persontoMeet}</Text>
+      <LinearGradient
+      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      style={{  borderRadius:15,width:'95%'}}>
+         <FlatList
+                data={data}
+                renderItem={({item}) =>    
+                <View style={{backgroundColor:'#fff',borderRadius:15,margin:5,flexDirection:'row',padding:10}}>
+                <View style={{flex:0.55}}>
+                <Text style={styles.textStyle}>Visitor Name : {item.visitorName}</Text>
+                <Text style={styles.textStyle}>In-Time:{item.inTime}</Text>
+                <Text style={styles.textStyle}>Person to Meet: {item.persontoMeet}</Text>
                 </View>
                 <View style={{flex: 0.25}}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -196,14 +168,52 @@ const HomeScreen = () => {
                   </LinearGradient>
                 </View>
               </View>
-            )}
-            keyExtractor={item => item.id}
-          />
+               }
+                keyExtractor={item => item.id}
+            />   
+      </LinearGradient></> 
+    : <View style={{flex:1,backgroundColor:'red',width:'100%'}}>
+        <View style ={{margin:15}}>
+          <Text style={styles.cardTitletext}>Visitor Information</Text>
         </View>
-      </View>
-    </View>
-  );
-};
+        <FlatList
+         data={data}
+         renderItem={({item}) =>    
+         <View style={{backgroundColor:'#fff',borderRadius:15,margin:5,flexDirection:'row',padding:10}}>
+         <View style={{flex:0.55}}>
+         <Text style={styles.textStyle}>Visitor Name : {item.visitorName}</Text>
+         <Text style={styles.textStyle}>In-Time:{item.inTime}</Text>
+         <Text style={styles.textStyle}>Person to Meet: {item.persontoMeet}</Text>
+         </View>
+         <View style={{flex:0.25}}>
+           <View style={{flexDirection:'row',alignItems:'center'}}>
+             <View style={{width: 6,height: 5,borderRadius: 5 / 2,backgroundColor: 'green',marginRight:5}}></View>
+             <Text style={styles.textStyle}>{item.status}</Text>
+           </View>
+         <Text>{item.validity}</Text>
+         </View>
+         <View style={{flex:0.2}}>
+           <LinearGradient
+       colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+       style={styles.subbutton}>
+       <TouchableOpacity
+         onPress={() => {
+           navigation.navigate('ApprovalScreen')
+         }}
+         style={styles.subbutton}>
+         <Text style={styles.subtext}>View</Text>
+       </TouchableOpacity>
+           </LinearGradient>
+         </View>
+       </View>
+        }
+         keyExtractor={item => item.id}
+     />   
+      </View>}
+  
+   </View>   
+  )
+}
 
 export default HomeScreen;
 const styles = StyleSheet.create({
@@ -248,9 +258,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textStyle: {
-    fontWeight: '500',
-    color: '700',
-    fontSize: 14,
-  },
-});
+  textStyle:{
+    fontWeight:'500',color:'#000',fontSize:14
+  }
+})

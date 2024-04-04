@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text,Pressable, SafeAreaView, FlatList,StyleSheet, Image,TouchableOpacity,Dimensions,Modal} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -24,45 +24,91 @@ import RegisterScreen from  './src/screens/RegisterScreen';
 import AttachFile from './src/screens/AttachFile';
 import VisitorNumber from './src/screens/VisitorNumber';
 import NotificationScreen from './src/screens/NotificationScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import ViewReport from './src/screens/ViewReport';
+import ApprovalScreen from './src/screens/ApprovalScreen'
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
-const data = [
-  {
-    id: '1',
-    title: 'Admin Management'
-  },
-  {
-    id: '2',
-    title: 'Subscription'
-  },
-  {
-    id: '3',
-    title: 'Profile'
-  },
-  {
-    id: '4',
-    title: 'Staff Management'
-  },
-  {
-    id: '5',
-    title: 'Permission Management'
-  },
-  {
-    id: '6',
-    title: 'Logout'
-  },
- 
-]
-
 const DrawerContents = (props) => {
   const navigation = useNavigation()
   const [modalVisible, setModalVisible] = useState(false);
+  const asyncc = '@MySuperStore:key'
+  const [demo, setdemo] = useState('');
+  const data = [
+    {
+      id: '1',
+      title: 'Admin Management'
+    },
+    {
+      id: '2',
+      title: 'Subscription'
+    },
+    {
+      id: '3',
+      title: 'Profile'
+    },
+    {
+      id: '4',
+      title: 'Staff Management'
+    },
+    {
+      id: '5',
+      title: 'Permission Management'
+    },
+    {
+      id: '6',
+      title: 'Logout'
+    },
+   
+  ]
+  const SecurityData = [
+    {
+      id: '1',
+      title: 'Edit Profile'
+    },
+    {
+      id: '2',
+      title: 'View Report'
+    },
+    {
+      id: '3',
+      title: 'Saved Visitor Information'
+    },
+    {
+      id: '4',
+      title: 'Logout'
+    },
+  ]
+
+var retrieveData = async () => {
+  try {
+    const value = await AsyncStorage.getItem(asyncc);
+    if (value !== null) {
+      console.log("Result",value,demo);
+    }
+    setdemo(value)
+  } catch (error) {
+   console.log(error)
+  }
+}
+
+useEffect(() => {
+  if (!demo) {
+    retrieveData();
+  }
+}, [demo])
   const onClickDrawer = (item) => {
    item.id == 1 ? navigation.navigate('VisitorCountScreen') : item.id == 3 ? navigation.navigate('EditProfile') : item.id == 6 ? setModalVisible(true) : null
-    }
+  }
+  const onClickSecurityDrawer = (item) => {
+   item.id == 1 ? navigation.navigate('EditProfile') 
+   : item.id == 2 ? navigation.navigate('ViewReport')
+   : item.id == 4 ? setModalVisible(true) : null
+  }
   return (
       <LinearGradient
       colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
@@ -75,12 +121,12 @@ const DrawerContents = (props) => {
           <Text style={{color:'#fff',fontWeight:'700',fontSize:16,marginTop:10}}>Hello user</Text>
         </View>
            <FlatList
-                data={data}
+                data={ demo == "Admin" ? data : SecurityData}
                 style={{ margin: 10 }}
                 renderItem = {({item}) =>    
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginLeft: 16 ,marginTop:20}}>
                   <SmallCircle color="#fff" />
-                  <TouchableOpacity onPress={()=> onClickDrawer(item)}>
+                  <TouchableOpacity onPress={()=> demo == "Admin" ?onClickDrawer(item): onClickSecurityDrawer(item)}>
                   <Text
                   fontSize={12}
                   color={'#fff'}
@@ -108,7 +154,7 @@ const DrawerContents = (props) => {
                 style={styles.subbutton}>
               <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Login')
+              navigation.navigate('MainScreen')
             }}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Yes</Text>
@@ -183,6 +229,8 @@ function App(props) {
           <Stack.Screen name="AttachFile" component={AttachFile}/>
           <Stack.Screen name="VisitorNumber" component={VisitorNumber}/>
           <Stack.Screen name="NotificationScreen" component={NotificationScreen}/>
+          <Stack.Screen name="ViewReport" component={ViewReport}/>
+          <Stack.Screen name="ApprovalScreen" component={ApprovalScreen}/>
         </Stack.Navigator>
         <SnackBar/>
       </NavigationContainer>
