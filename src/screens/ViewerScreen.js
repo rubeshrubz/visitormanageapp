@@ -22,21 +22,29 @@ const Height = Dimensions.get('window').height;
 export default function ViewerScreen() {
   const [files, setFile] = useState('');
   const [modal, setModal] = useState(false);
-
+  const [load,setload] = useState('No Choosen file')
+  const [loadx,setloadx] = useState('No Choosen file')
   useEffect(() => {
-    display();
+    valid();
   }, []);
 
-  const display = async () => {
-    try {
-      let displays = await AsyncStorage.getItem('photo');
-      let image = JSON.parse(displays);
-      setFile(image);
-      console.log('image', image);
-    } catch {
-      console.log('error', error);
-    }
-  };
+
+
+  const valid = async()=> {
+    const pho1 = await AsyncStorage.getItem('Image1');
+    setload(pho1)
+    console.log('Image1=>', pho1);
+    const pho2 = await AsyncStorage.getItem('Image2');
+    console.log('Image2=>', pho2);
+    setloadx(pho2)
+  }
+  
+console.log('lklkk',load)
+console.log('ixixi',loadx)
+
+
+
+  
 
   const navigation = useNavigation();
 
@@ -101,8 +109,8 @@ export default function ViewerScreen() {
             alignItems: 'center',
           }}>
           <Image
-            source={{uri: files?.Image1}}
-            style={{height: '95%', width: '95%'}}
+            source={{uri: load}}
+            style={{height: '95%', width: '95%',borderRadius: 10}}
           />
         </View>
 
@@ -116,8 +124,8 @@ export default function ViewerScreen() {
             alignItems: 'center',
           }}>
           <Image
-            source={{uri: files?.Image2}}
-            style={{height: '95%', width: '95%'}}
+            source={{uri: loadx}}
+            style={{height: '95%', width: '95%',borderRadius: 10}}
           />
         </View>
       </View>
@@ -178,7 +186,7 @@ export default function ViewerScreen() {
                 justifyContent: 'center',
                 backgroundColor: '#357AB4',
               }}
-              onPress={() => {setModal(false),navigation.navigate('MainScreen')}}>
+              onPress={() => {setModal(false),navigation.navigate('VisitorNumber')}}>
               <Text
                 style={{
                   fontFamily: 'Roboto',

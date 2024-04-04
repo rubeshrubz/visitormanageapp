@@ -5,8 +5,9 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
+  Alert
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Backbutton} from '../components/headerbackbutton';
 import Colors from '../components/Colors';
 import Button from '../components/Button';
@@ -17,16 +18,28 @@ export default function AttachFile() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  useEffect(async () => {
-    const pho1 = await AsyncStorage.getItem('Image1');
-    console.log('Image1=>', pho1);
-    const pho2 = await AsyncStorage.getItem('Image2');
-    console.log('Image2=>', pho2);
+const [load,setload] = useState('No Choosen file')
+const [loadx,setloadx] = useState('No Choosen file')
+  useEffect( () => {
+    valid()
   }, [isFocused]);
+
+
+const valid = async()=> {
+  const pho1 = await AsyncStorage.getItem('Image1');
+  setload(pho1)
+  console.log('Image1=>', pho1);
+  const pho2 = await AsyncStorage.getItem('Image2');
+  console.log('Image2=>', pho2);
+  setloadx(pho2)
+}
+
+
+
+
 
   const send1 = async () => {
     await AsyncStorage.removeItem('Image1');
-
     navigation.navigate('UploadCamera', {
       image: 'Image1',
     });
@@ -34,12 +47,16 @@ export default function AttachFile() {
 
   const send2 = async () => {
     await AsyncStorage.removeItem('Image2');
-
     navigation.navigate('UploadCamera', {
       image: 'Image2',
     });
   };
-
+  // const _chosen = () => {
+  //   if((load != null)&&(loadx != null)){
+  //    navigation.navigate('VisitorDetailsScreen')
+  //   //  Alert.alert('hi')
+  //   }
+  // }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -54,8 +71,9 @@ export default function AttachFile() {
       </View>
       <View
         style={{
-          flex: 0.45,
-          justifyContent: 'space-evenly',
+          flex: 0.5,
+          justifyContent:'space-between',
+          // borderWidth:1
         }}>
         <View style={{flex: 0.65}}>
           <Text style={styles.civilidtext}> Civil Id Picture Front Side</Text>
@@ -64,7 +82,7 @@ export default function AttachFile() {
               <Text style={styles.chooseText}>Choose File</Text>
             </TouchableOpacity>
             <View style={styles.imgtext}>
-              <Text style={styles.nochoosetext}>No File Choosen </Text>
+              <Text style={styles.nochoosetext}>{load !=null ? load:"No Choosen file" }</Text>
             </View>
           </View>
           <Text style={styles.civilidtext}> Civil Id Picture Back Side</Text>
@@ -73,17 +91,18 @@ export default function AttachFile() {
               <Text style={styles.chooseText}>Choose File</Text>
             </TouchableOpacity>
             <View style={styles.imgtext}>
-              <Text style={styles.nochoosetext}>No File Choosen </Text>
+              <Text style={styles.nochoosetext}>{loadx !=null ? loadx:"No Choosen file" } </Text>
             </View>
           </View>
         </View>
         <View
           style={{
-            justifyContent: 'flex-start',
+            // justifyContent: 'flex-start',
             alignSelf: 'center',
-            flex: 0.35,
+            marginTop:20
+            // flex: 0.35,
           }}>
-          <Button buttonStyle={styles.button} text={'Submit'} onPress={null} />
+          <Button buttonStyle={styles.button} text={'Submit'} onPress={() => navigation.navigate('VisitorDetailsScreen')} />
         </View>
       </View>
       <View style={{flex: 0.3}}></View>
@@ -119,6 +138,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '90%',
     alignSelf: 'center',
+    alignItems:'center',
     // borderWidth: 1,
     borderColor: Colors.button_text,
     borderRadius: 10,
