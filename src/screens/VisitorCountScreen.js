@@ -28,27 +28,26 @@ const sliceColor = ['#5ca9e9', '#0043ae', '#008fff','#223bc9']
             widthAndHeight={widthAndHeight}
             series={series}
             sliceColor={sliceColor}
-            // coverRadius={0.45}
-            // coverFill={'#FFF'}
+            doughnut={true}
+            coverRadius={0.45}
+            coverFill={'#FFF'}
           />
-
-
   <View style={styles.mainView}>
     <View style={styles.descView}>
         <View style={[styles.circle,{backgroundColor:'#5ca9e9'}]}></View>
-        <Text style={{marginLeft:10}}>Current Visitors percentage</Text>
+        <Text style={styles.chartext}>20% Current Visitors percentage</Text>
     </View>
     <View style={styles.descView}>
         <View style={[styles.circle,{backgroundColor:'#0043ae'}]}></View>
-        <Text style={{marginLeft:10}}>Daily visitors percentage</Text>
+        <Text style={styles.chartext}>40% Daily visitors percentage</Text>
     </View>
     <View style={styles.descView}>
         <View style={[styles.circle,{backgroundColor:'#008fff'}]}></View>
-        <Text style={{marginLeft:10}}>This week visitors percentage</Text>
+        <Text style={styles.chartext}>20% This week visitors percentage</Text>
     </View>
     <View style={styles.descView}>
         <View style={[styles.circle,{backgroundColor:'#223bc9'}]}></View>
-        <Text style={{marginLeft:10}}>This month visitors percentage</Text>
+        <Text style={styles.chartext}>70% This month visitors percentage</Text>
     </View>
     </View>
     </View>
@@ -56,8 +55,6 @@ const sliceColor = ['#5ca9e9', '#0043ae', '#008fff','#223bc9']
         <Text style={styles.subtext}>Click Here to view Today's Visitors</Text>
       </TouchableOpacity>
   </View>
-
-  
   </SafeAreaView>
   )
 }
@@ -72,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize:20,fontWeight:'bold',margin:20,color:"#fff",alignSelf:'center',flex:0.7
   },
   descView: {
-    flexDirection:'row',justifyContent:'center',alignItems:'center'
+    flexDirection:'row',alignItems:'center',
   },
   mainView: {
     marginVertical:25,alignSelf:'flex-start'
@@ -92,6 +89,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#000',
     alignItems:'center',
     justifyContent:'center'
-    
-  }
+    },
+    chartext: {
+      fontSize:15,
+      fontWeight:'500',
+      color:'#000',
+      marginLeft:7
+    }
 })
