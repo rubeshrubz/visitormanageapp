@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from './Colors'
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function Card(props) {
 
@@ -11,9 +12,13 @@ export default function Card(props) {
       } = props;
   return (
     <View style={styles.container}>
+      <LinearGradient
+      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      style={styles.container}>
       <Text style={styles.text}>Date: {Date}</Text>
       <Text style={styles.text}>Time: {Time}</Text>
       <Text style={styles.text}>Visitor Number: {Number}</Text>
+      </LinearGradient>
     </View>
   )
 }
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
         // flex:1,
         width:'90%',
         alignSelf:'center',
-        backgroundColor:Colors.button_text,
+        // backgroundColor:Colors.button_text,
         borderRadius:10,
         padding:20
     },

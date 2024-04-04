@@ -11,4 +11,5 @@ export const icons = {
   getstart: require('../Assets/getstartimg.jpg'),
   focus: require('../Assets/focus.png'),
   success: require('../Assets/lottie.json'),
+  loader:require('../Assets/animation.json')
 };

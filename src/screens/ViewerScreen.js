@@ -16,7 +16,7 @@ import {Backbutton} from '../components/headerbackbutton';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppHeader from '../components/AppHeader';
-
+import LinearGradient from 'react-native-linear-gradient';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function ViewerScreen() {
@@ -128,11 +128,15 @@ export default function ViewerScreen() {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
+           <LinearGradient
+          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          style={styles.subbutton}>
         <TouchableOpacity
           style={styles.subbutton}
           onPress={() => setModal(true)}>
           <Text style={styles.subtext}>Submit</Text>
         </TouchableOpacity>
+        </LinearGradient>
       </View>
 
       <Modal
@@ -225,7 +229,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#2D2B89',
+    // backgroundColor: '#2D2B89',
     alignItems: 'center',
     justifyContent: 'center',
   },
