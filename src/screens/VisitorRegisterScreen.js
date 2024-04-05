@@ -38,52 +38,52 @@ export default function VisitorRegisterScreen() {
     setmobilenumber(phoneNumber);
   };
 
-  const _vaildate = () => {
-    if (global.functions.isNullOrEmpty(firstname)) {
-      global.functions.ShowAlert(
-        'Please Enter Your Name',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(mobilenumber)) {
-      global.functions.ShowAlert(
-        'Please Enter mobilenumber',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(civilid)) {
-      global.functions.ShowAlert('Please Enter civilid', global.const.warning);
-    } else if (global.functions.isNullOrEmpty(visit)) {
-      global.functions.ShowAlert(
-        'Please Enter Purpose Of Visit',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(meet)) {
-      global.functions.ShowAlert(
-        'Please Enter Person Of Meet',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(comapny)) {
-      global.functions.ShowAlert(
-        'Please Enter Company Name',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(intime)) {
-      global.functions.ShowAlert('Please Enter In Time', global.const.warning);
-    } else {
-      const store = {
-        firstname: firstname,
-        mobilenumber: mobilenumber,
-        civilid: civilid,
-        visit: visit,
-        meet: meet,
-        comapny: comapny,
-        intime: intime,
-      };
+  // const _vaildate = () => {
+  //   if (global.functions.isNullOrEmpty(firstname)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter Your Name',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(mobilenumber)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter mobilenumber',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(civilid)) {
+  //     global.functions.ShowAlert('Please Enter civilid', global.const.warning);
+  //   } else if (global.functions.isNullOrEmpty(visit)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter Purpose Of Visit',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(meet)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter Person Of Meet',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(comapny)) {
+  //     global.functions.ShowAlert(
+  //       'Please Enter Company Name',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(intime)) {
+  //     global.functions.ShowAlert('Please Enter In Time', global.const.warning);
+  //   } else {
+  //     const store = {
+  //       firstname: firstname,
+  //       mobilenumber: mobilenumber,
+  //       civilid: civilid,
+  //       visit: visit,
+  //       meet: meet,
+  //       comapny: comapny,
+  //       intime: intime,
+  //     };
 
-      AsyncStorage.setItem('user', JSON.stringify(store));
-      console.log('store==>', store);
-      navigation.navigate('UploadCamera');
-    }
-  };
+  //     AsyncStorage.setItem('user', JSON.stringify(store));
+  //     console.log('store==>', store);
+  //     navigation.navigate('UploadCamera');
+  //   }
+  // };
   const [spin, setPin] = useState(true);
 
   useEffect(() => {

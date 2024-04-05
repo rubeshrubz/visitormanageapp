@@ -5,7 +5,7 @@ export const icons = {
   upload: require('../Assets/upload.png'),
   condition: require('../Assets/xbox.png'),
   close: require('../Assets/closeend.png'),
-  pic: require('../Assets/pic.png'),
+  pic: require('../Assets/pic.webp'),
   camera: require('../Assets/camera.png'),
   splash: require('../Assets/splash_screen.png'),
   getstart: require('../Assets/getstartimg.jpg'),

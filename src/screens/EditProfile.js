@@ -161,7 +161,7 @@ export default function EditProfile() {
   };
 
   const options = useMemo(() => countryList().getData(), []);
-  console.log('options==>', options);
+  // console.log('options==>', options);
 
   const changeHandler = value => {
     setValue(value);
