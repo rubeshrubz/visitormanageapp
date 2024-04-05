@@ -8,20 +8,30 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Card from '../components/card';
 import Colors from '../components/Colors';
 import Button from '../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import {icons} from '../components/Assets';
+import { Spinner } from '../components/Spinner';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorNumber() {
   const [modal, setModal] = useState(false);
   const navigation = useNavigation();
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
+         {spin ? <Spinner /> : null}
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={Colors.dark_button}

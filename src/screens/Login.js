@@ -16,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../components/Colors';
+import {Spinner} from '../components/Spinner';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
@@ -31,6 +32,15 @@ export default function VisitorRegisterScreen(props) {
   const secureText = () => {
     setEye(!eye);
   };
+
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
 
   const onChangeNumber = ({dialCode, phoneNumber}) => {
     Setdialcode(dialCode);
@@ -59,6 +69,8 @@ export default function VisitorRegisterScreen(props) {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
+        {spin ? <Spinner /> : null}
+
         <StatusBar
           barStyle={'light-content'}
           backgroundColor={Colors.dark_button}
@@ -84,8 +96,7 @@ export default function VisitorRegisterScreen(props) {
           colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
           style={styles.subbutton}>
           <TouchableOpacity
-            onPress={() => 
-              navigation.navigate('HomeScreen')}
+            onPress={() => navigation.navigate('HomeScreen')}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Login</Text>
           </TouchableOpacity>

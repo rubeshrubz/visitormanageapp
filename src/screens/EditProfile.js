@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -24,6 +24,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import countryList from 'react-select-country-list';
 import AppHeader from '../components/AppHeader';
 import LinearGradient from 'react-native-linear-gradient';
+import { Spinner } from '../components/Spinner';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
@@ -111,28 +112,28 @@ export default function EditProfile() {
   }
   const [date, Setdate] = useState('');
   console.log('meet=>', meet);
-  const _validate = () => {
-    if (global.functions.isNullOrEmpty(firstname)) {
-      global.functions.ShowAlert('Please enter name', global.const.warning);
-    } else if (global.functions.isNullOrEmpty(Email)) {
-      global.functions.ShowAlert('Please enter email', global.const.warning);
-    } else if (global.functions.ValidateEmail(Email)) {
-      global.functions.ShowAlert(
-        'Please enter valid emailid',
-        global.const.warning,
-      );
-    } else if (global.functions.isNullOrEmpty(visit)) {
-      global.functions.ShowAlert('Please Enter Password', global.const.warning);
-    } else if (visit.length < 8) {
-      global.functions.ShowAlert(
-        'Password Should be Minimum 8 char',
-        global.const.warning,
-      );
-    } else {
-      // navigation.navigate('VisitorRegisterScreen');
-      Alert.alert('hi');
-    }
-  };
+  // const _validate = () => {
+  //   if (global.functions.isNullOrEmpty(firstname)) {
+  //     global.functions.ShowAlert('Please enter name', global.const.warning);
+  //   } else if (global.functions.isNullOrEmpty(Email)) {
+  //     global.functions.ShowAlert('Please enter email', global.const.warning);
+  //   } else if (global.functions.ValidateEmail(Email)) {
+  //     global.functions.ShowAlert(
+  //       'Please enter valid emailid',
+  //       global.const.warning,
+  //     );
+  //   } else if (global.functions.isNullOrEmpty(visit)) {
+  //     global.functions.ShowAlert('Please Enter Password', global.const.warning);
+  //   } else if (visit.length < 8) {
+  //     global.functions.ShowAlert(
+  //       'Password Should be Minimum 8 char',
+  //       global.const.warning,
+  //     );
+  //   } else {
+  //     // navigation.navigate('VisitorRegisterScreen');
+  //     Alert.alert('hi');
+  //   }
+  // };
   const secureText = () => {
     setEye(!eye);
   };
@@ -179,8 +180,18 @@ export default function EditProfile() {
     );
   };
 
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
+      {spin ? <Spinner /> : null}
       <AppHeader title={'Edit Profile'}/>
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
@@ -243,7 +254,7 @@ export default function EditProfile() {
           style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
-              _validate();
+              navigation.navigate('HomeScreen');
             }}
             style={styles.subbutton}>
             <Text style={styles.subtext}>Save Changes</Text>

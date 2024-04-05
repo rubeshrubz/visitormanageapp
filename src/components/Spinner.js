@@ -15,7 +15,7 @@ export const Spinner = () => {
                     <Lottie source={require('../../src/components/Assets/animation.json')}
                         autoPlay
                         loop
-                        style={{ height: 200, width: 250 }} />
+                        style={{ height: 170, width: 170 }} />
                 </View>
             </View>
         </Modal>

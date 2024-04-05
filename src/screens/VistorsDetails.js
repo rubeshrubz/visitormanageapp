@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import LinearGradient from 'react-native-linear-gradient';
+import { Spinner } from '../components/Spinner';
 export default function VisitorDetailsScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -44,9 +45,18 @@ export default function VisitorDetailsScreen() {
       Alert.alert(error);
     }
   };
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
+        {spin ? <Spinner /> : null}
       <View style={styles.button_cover}>
         <Backbutton onPress={() => navigation.goBack()} />
         <Text style={styles.profile_text}>Visitor's Details</Text>

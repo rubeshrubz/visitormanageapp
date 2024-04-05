@@ -13,7 +13,7 @@ import Colors from '../components/Colors';
 import Button from '../components/Button';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Spinner } from '../components/Spinner';
 export default function AttachFile() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
@@ -57,8 +57,18 @@ const valid = async()=> {
   //   //  Alert.alert('hi')
   //   }
   // }
+
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
+         {spin ? <Spinner /> : null}
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={Colors.dark_button}

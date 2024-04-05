@@ -1,25 +1,33 @@
 import {StyleSheet, Text, View, StatusBar, SafeAreaView} from 'react-native';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Button from '../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Spinner } from '../components/Spinner';
 const MainScreen = props => {
   const navigation = useNavigation();
 
-  const onClickBuildingAdmin= () => {
-    AsyncStorage.setItem( '@MySuperStore:key', 'Admin')
-   navigation.navigate('Login')
-  }
+  const onClickBuildingAdmin = () => {
+    AsyncStorage.setItem('@MySuperStore:key', 'Admin');
+    navigation.navigate('Login');
+  };
 
   const onClickSecurity = () => {
-    AsyncStorage.setItem( '@MySuperStore:key', 'Security')
-   navigation.navigate('Login')
-  }
-  
+    AsyncStorage.setItem('@MySuperStore:key', 'Security');
+    navigation.navigate('Login');
+  };
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    }, 2000);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
+      {spin ? <Spinner /> : null}
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={Colors.dark_button}
@@ -31,25 +39,25 @@ const MainScreen = props => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text style={{fontWeight: 'bold', fontSize: 24, marginVertical: 10,color:Colors.dark_button}}>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 24,
+            marginVertical: 10,
+            color: Colors.dark_button,
+          }}>
           Select Your Role
         </Text>
         <Button
           text={'Building Admin'}
           onPress={() => onClickBuildingAdmin()}
         />
-        <Button
-          text={'Super Admin'}
-          onPress={() => onClickBuildingAdmin()}
-        />
+        <Button text={'Super Admin'} onPress={() => onClickBuildingAdmin()} />
         <Button
           text={'Visitor'}
           onPress={() => navigation.navigate('QRScanner')}
         />
-        <Button
-          text={'Security Staff'}
-          onPress={() => onClickSecurity()}
-        />
+        <Button text={'Security Staff'} onPress={() => onClickSecurity()} />
       </View>
     </SafeAreaView>
   );

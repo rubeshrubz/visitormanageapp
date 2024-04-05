@@ -15,7 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import Calendar from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Spinner } from '../components/Spinner';
 const HomeScreen = props => {
   const navigation = useNavigation();
 
@@ -107,9 +107,18 @@ const HomeScreen = props => {
       validity: '-',
     },
   ];
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
+           {spin ? <Spinner /> : null}
       <LinearGradient
         colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
         style={{

@@ -17,34 +17,29 @@ import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppHeader from '../components/AppHeader';
 import LinearGradient from 'react-native-linear-gradient';
+import { Spinner } from '../components/Spinner';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function ViewerScreen() {
   const [files, setFile] = useState('');
   const [modal, setModal] = useState(false);
-  const [load,setload] = useState('No Choosen file')
-  const [loadx,setloadx] = useState('No Choosen file')
+  const [load, setload] = useState('No Choosen file');
+  const [loadx, setloadx] = useState('No Choosen file');
   useEffect(() => {
     valid();
   }, []);
 
-
-
-  const valid = async()=> {
+  const valid = async () => {
     const pho1 = await AsyncStorage.getItem('Image1');
-    setload(pho1)
+    setload(pho1);
     console.log('Image1=>', pho1);
     const pho2 = await AsyncStorage.getItem('Image2');
     console.log('Image2=>', pho2);
-    setloadx(pho2)
-  }
-  
-console.log('lklkk',load)
-console.log('ixixi',loadx)
+    setloadx(pho2);
+  };
 
-
-
-  
+  console.log('lklkk', load);
+  console.log('ixixi', loadx);
 
   const navigation = useNavigation();
 
@@ -58,9 +53,17 @@ console.log('ixixi',loadx)
       console.log(exception);
     }
   };
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    }, 2000);
+  }, []);
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
+      {spin ? <Spinner /> : null}
       <View style={{flex: 0.1, backgroundColor: '#fff', flexDirection: 'row'}}>
         {/* <View
           style={{
@@ -90,7 +93,7 @@ console.log('ixixi',loadx)
             Document Preview
           </Text>
         </View> */}
-        <AppHeader title={"Document Preview"}/>
+        <AppHeader title={'Document Preview'} />
       </View>
       <View
         style={{
@@ -110,7 +113,7 @@ console.log('ixixi',loadx)
           }}>
           <Image
             source={{uri: load}}
-            style={{height: '95%', width: '95%',borderRadius: 10}}
+            style={{height: '95%', width: '95%', borderRadius: 10}}
           />
         </View>
 
@@ -125,7 +128,7 @@ console.log('ixixi',loadx)
           }}>
           <Image
             source={{uri: loadx}}
-            style={{height: '95%', width: '95%',borderRadius: 10}}
+            style={{height: '95%', width: '95%', borderRadius: 10}}
           />
         </View>
       </View>
@@ -136,14 +139,14 @@ console.log('ixixi',loadx)
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-           <LinearGradient
+        <LinearGradient
           colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
           style={styles.subbutton}>
-        <TouchableOpacity
-          style={styles.subbutton}
-          onPress={() => setModal(true)}>
-          <Text style={styles.subtext}>Submit</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.subbutton}
+            onPress={() => setModal(true)}>
+            <Text style={styles.subtext}>Submit</Text>
+          </TouchableOpacity>
         </LinearGradient>
       </View>
 
@@ -186,7 +189,9 @@ console.log('ixixi',loadx)
                 justifyContent: 'center',
                 backgroundColor: '#357AB4',
               }}
-              onPress={() => {setModal(false),navigation.navigate('VisitorNumber')}}>
+              onPress={() => {
+                setModal(false), navigation.navigate('VisitorNumber');
+              }}>
               <Text
                 style={{
                   fontFamily: 'Roboto',
@@ -251,7 +256,7 @@ const styles = StyleSheet.create({
   profile_text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color:'#2D2B89',
+    color: '#2D2B89',
     marginHorizontal: 85,
   },
 });

@@ -15,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {icons} from '../components/Assets/index';
 import Colors from '../components/Colors';
+import { Spinner } from '../components/Spinner';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
@@ -29,6 +30,14 @@ export default function QRScanner() {
     //   navigation.navigate('Login');
     // }, 2500);
   }, []);
+
+  // const [spin, setPin] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   }, 2000);
+  // }, []);
 
   const CustomMarker = () => (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -71,6 +80,7 @@ export default function QRScanner() {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
+       {/* {spin ? <Spinner /> : null} */}
       <View style={{flex: 0.1, backgroundColor: '#fff', flexDirection: 'row'}}>
         <View style={styles.button_cover}>
           <Backbutton onPress={() => navigation.goBack()} />

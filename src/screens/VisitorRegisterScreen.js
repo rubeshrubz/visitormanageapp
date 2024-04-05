@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,7 +19,7 @@ import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import AppHeader from '../components/AppHeader';
-
+import { Spinner } from '../components/Spinner';
 export default function VisitorRegisterScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -84,9 +84,18 @@ export default function VisitorRegisterScreen() {
       navigation.navigate('UploadCamera');
     }
   };
+  const [spin, setPin] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
+           {spin ? <Spinner /> : null}
         <StatusBar
           barStyle={'light-content'}
           backgroundColor={Colors.dark_button}

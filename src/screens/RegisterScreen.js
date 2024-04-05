@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,6 +19,7 @@ import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import AppHeader from '../components/AppHeader';
+import { Spinner } from '../components/Spinner';
 export default function RegisterScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -76,14 +77,43 @@ export default function RegisterScreen() {
   //     navigation.navigate('Login');
   //   }
   // };
+  const [spin, setPin] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setPin(false);
+    },2000)
+    
+  }, []);
+  const asyncc = '@MySuperStore:key';
+  const [demo, setdemo] = useState('');
+
+  var retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(asyncc);
+      if (value !== null) {
+        console.log('Result', value, demo);
+      }
+      setdemo(value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!demo) {
+      retrieveData();
+    }
+  }, [demo]);
   return (
     <SafeAreaView style={styles.container}>
+     {spin ? <Spinner /> : null}
         <StatusBar
           barStyle={'light-content'}
           backgroundColor={Colors.dark_button}
         />
-       <AppHeader title={'Admin Register'}/>
+           {demo === 'Admin' ? 
+       <AppHeader title={'Admin Register'}/>: <AppHeader title={'Security Register'}/>}
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
           <Text style={styles.text}>Name</Text>
