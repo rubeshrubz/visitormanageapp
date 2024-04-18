@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
-  Alert
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Backbutton} from '../components/headerbackbutton';
@@ -13,30 +13,27 @@ import Colors from '../components/Colors';
 import Button from '../components/Button';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Spinner } from '../components/Spinner';
+import AppHeader from '../components/AppHeader';
+import {Spinner} from '../components/Spinner';
+import LinearGradient from 'react-native-linear-gradient';
 export default function AttachFile() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-const [load,setload] = useState('No Choosen file')
-const [loadx,setloadx] = useState('No Choosen file')
-  useEffect( () => {
-    valid()
+  const [load, setload] = useState('No Choosen file');
+  const [loadx, setloadx] = useState('No Choosen file');
+  useEffect(() => {
+    valid();
   }, [isFocused]);
 
-
-const valid = async()=> {
-  const pho1 = await AsyncStorage.getItem('Image1');
-  setload(pho1)
-  console.log('Image1=>', pho1);
-  const pho2 = await AsyncStorage.getItem('Image2');
-  console.log('Image2=>', pho2);
-  setloadx(pho2)
-}
-
-
-
-
+  const valid = async () => {
+    const pho1 = await AsyncStorage.getItem('Image1');
+    setload(pho1);
+    console.log('Image1=>', pho1);
+    const pho2 = await AsyncStorage.getItem('Image2');
+    console.log('Image2=>', pho2);
+    setloadx(pho2);
+  };
 
   const send1 = async () => {
     await AsyncStorage.removeItem('Image1');
@@ -63,45 +60,57 @@ const valid = async()=> {
   useEffect(() => {
     setTimeout(() => {
       setPin(false);
-    },2000)
-    
+    }, 2000);
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-         {spin ? <Spinner /> : null}
+      {spin ? <Spinner /> : null}
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={Colors.dark_button}
       />
       <View style={{flex: 0.25}}>
         <View style={styles.button_cover}>
-          <Backbutton onPress={() => navigation.goBack()} />
-          <Text style={styles.profile_text}>Visitor's Civil Id Details</Text>
+          <AppHeader title={'Visitors Civil Id Details'} />
+          {/* <Backbutton onPress={() => navigation.goBack()} />
+          <Text style={styles.profile_text}>Visitor's Civil Id Details</Text> */}
         </View>
       </View>
       <View
         style={{
           flex: 0.5,
-          justifyContent:'space-between',
+          justifyContent: 'space-between',
           // borderWidth:1
         }}>
         <View style={{flex: 0.65}}>
           <Text style={styles.civilidtext}> Civil Id Picture Front Side</Text>
           <View style={styles.choosefilecover}>
-            <TouchableOpacity style={styles.choosefile} onPress={() => send1()}>
+          <LinearGradient
+          colors={['#0C001D', '#1E024E', '#593C6A']}
+          style={styles.choosefile}>
+            <TouchableOpacity onPress={() => send1()}>
               <Text style={styles.chooseText}>Choose File</Text>
             </TouchableOpacity>
+            </LinearGradient>
             <View style={styles.imgtext}>
-              <Text style={styles.nochoosetext}>{load !=null ? load:"No Choosen file" }</Text>
+              <Text style={styles.nochoosetext}>
+                {load != null ? load : 'No Choosen file'}
+              </Text>
             </View>
           </View>
           <Text style={styles.civilidtext}> Civil Id Picture Back Side</Text>
           <View style={styles.choosefilecover}>
-            <TouchableOpacity style={styles.choosefile} onPress={() => send2()}>
+          <LinearGradient
+          colors={['#0C001D', '#1E024E', '#593C6A']}
+          style={styles.choosefile}>
+            <TouchableOpacity onPress={() => send2()}>
               <Text style={styles.chooseText}>Choose File</Text>
             </TouchableOpacity>
+            </LinearGradient>
             <View style={styles.imgtext}>
-              <Text style={styles.nochoosetext}>{loadx !=null ? loadx:"No Choosen file" } </Text>
+              <Text style={styles.nochoosetext}>
+                {loadx != null ? loadx : 'No Choosen file'}{' '}
+              </Text>
             </View>
           </View>
         </View>
@@ -109,10 +118,14 @@ const valid = async()=> {
           style={{
             // justifyContent: 'flex-start',
             alignSelf: 'center',
-            marginTop:20
+            marginTop: 20,
             // flex: 0.35,
           }}>
-          <Button buttonStyle={styles.button} text={'Submit'} onPress={() => navigation.navigate('VisitorDetailsScreen')} />
+          <Button
+            buttonStyle={styles.button}
+            text={'Submit'}
+            onPress={() => navigation.navigate('VisitorDetailsScreen')}
+          />
         </View>
       </View>
       <View style={{flex: 0.3}}></View>
@@ -125,7 +138,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button_cover: {
-    height: 50,
+    // height: 50,
     width: '100%',
     backgroundColor: 'lightgrey',
     alignItems: 'center',
@@ -140,7 +153,7 @@ const styles = StyleSheet.create({
   civilidtext: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: Colors.dark_button,
+    color: '#411350',
     marginLeft: 15,
     marginVertical: 15,
   },
@@ -148,7 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '90%',
     alignSelf: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     // borderWidth: 1,
     borderColor: Colors.button_text,
     borderRadius: 10,
@@ -158,7 +171,7 @@ const styles = StyleSheet.create({
   choosefile: {
     height: 35,
     width: '25%',
-    backgroundColor: Colors.dark_button,
+    // backgroundColor: Colors.dark_button,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,

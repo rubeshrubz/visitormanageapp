@@ -99,9 +99,9 @@ const InputText = props => {
               onPress={onPress}
               keyboardType={keyboardType}>
               {visible == true ? (
-                <Icon name={'eye-off'} size={22} color={Colors.dark_button} />
+                <Icon name={'eye-off'} size={22} color={'#411350'} />
               ) : (
-                <Icon name={'eye-check'} size={23} color={Colors.dark_button} />
+                <Icon name={'eye-check'} size={23} color={'#411350'} />
               )}
             </TouchableOpacity>
           )}
@@ -120,9 +120,9 @@ const InputText = props => {
               editable={editable}
               keyboardType={keyboardType}>
               {visibles == true ? (
-                <Icon name={'chevron-up'} size={23} color={'#4f81bd'} />
+                <Icon name={'chevron-up'} size={23} color={'#411350'} />
               ) : (
-                <Icon name={'chevron-down'} size={22} color={'#4f81bd'} />
+                <Icon name={'chevron-down'} size={22} color={'#411350'} />
               )}
             </TouchableOpacity>
           )}

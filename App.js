@@ -46,6 +46,8 @@ import ViewReport from './src/screens/ViewReport';
 import ApprovalScreen from './src/screens/ApprovalScreen';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
+import ViewDetailScreen from './src/screens/ViewDetailScreen';
+import Webscreen from './src/screens/webscreen';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
@@ -60,26 +62,35 @@ const DrawerContents = props => {
   const data = [
     {
       id: '1',
-      title: 'Admin Management',
-    },
-    {
-      id: '2',
-      title: 'Subscription',
-    },
-    {
-      id: '3',
-      title: 'Profile',
-    },
-    {
-      id: '4',
       title: 'Staff Management',
     },
     {
+      id: '2',
+      title: 'QR Code Generator',
+    },
+    {
+      id: '3',
+      title: 'Building Setup',
+    },
+
+    {
+      id: '4',
+      title: 'CRUD Operation',
+    },
+    {
       id: '5',
-      title: 'Permission Management',
+      title: 'Edit Profile',
     },
     {
       id: '6',
+      title: 'Update Form',
+    },
+    {
+      id: '7',
+      title: 'Profile Management',
+    },
+    {
+      id: '8',
       title: 'Logout',
     },
   ];
@@ -120,11 +131,9 @@ const DrawerContents = props => {
     }
   }, [demo]);
   const onClickDrawer = item => {
-    item.id == 1
-      ? navigation.navigate('VisitorCountScreen')
-      : item.id == 3
+    item.id == 5
       ? navigation.navigate('EditProfile')
-      : item.id == 6
+      : item.id == 8
       ? setModalVisible(true)
       : null;
   };
@@ -171,7 +180,7 @@ const DrawerContents = props => {
               //   file: resp[0],
               // });
               SetImages(resp[0]?.uri);
-              console.log('img===>',images)
+              console.log('img===>', images);
             }
           })
           .catch(out => {
@@ -209,7 +218,7 @@ const DrawerContents = props => {
 
   return (
     <LinearGradient
-      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      colors={['#0C001D', '#1E024E', '#593C6A']}
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <View style={{flex: 0.5, alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity onPress={() => openFilePicker()}>
@@ -217,9 +226,9 @@ const DrawerContents = props => {
             style={styles.avatar}
             source={images ? {uri: images} : icons.pic}
           />
-           <TouchableOpacity onPress={() => openFilePicker()}>
-              <Image style={styles.cameras} source={icons.camera} />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => openFilePicker()}>
+            <Image style={styles.cameras} source={icons.camera} />
+          </TouchableOpacity>
         </TouchableOpacity>
 
         <Text
@@ -343,7 +352,7 @@ function App(props) {
         <Stack.Navigator
           screenOptions={{headerShown: false}}
           initialRouteName="InitialScreen">
-          <Stack.Screen name="GetStart" component={GetStart} />
+          {/* <Stack.Screen name="GetStart" component={GetStart} /> */}
           <Stack.Screen name="QRScanner" component={QRScanner} />
           <Stack.Screen name="InitialScreen" component={InitialScreen} />
           <Stack.Screen name="Qrscreen" component={Qrscreen} />
@@ -374,6 +383,7 @@ function App(props) {
           />
           <Stack.Screen name="ViewReport" component={ViewReport} />
           <Stack.Screen name="ApprovalScreen" component={ApprovalScreen} />
+          <Stack.Screen name="ViewDetailScreen" component={ViewDetailScreen} />
         </Stack.Navigator>
         <SnackBar />
       </NavigationContainer>
@@ -388,15 +398,16 @@ const styles = StyleSheet.create({
     height: (Height / 40) * 5,
     borderRadius: Width / 3,
     borderColor: '#242760',
-    flexDirection:'row',
+    flexDirection: 'row',
     borderWidth: 1,
     backgroundColor: '#fff',
   },
   cameras: {
     width: 25,
     height: 22,
-    bottom:25,
-    left:80,
+    bottom: 25,
+    left: 80,
+    tintColor:'#fff'
   },
   centeredView: {
     flex: 1,

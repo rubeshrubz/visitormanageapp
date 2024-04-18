@@ -5,11 +5,20 @@ export const icons = {
   upload: require('../Assets/upload.png'),
   condition: require('../Assets/xbox.png'),
   close: require('../Assets/closeend.png'),
-  pic: require('../Assets/pic.webp'),
+  pic: require('../Assets/pic.png'),
   camera: require('../Assets/camera.png'),
-  splash: require('../Assets/splash_screen.png'),
+  splash: require('../Assets/splashs.png'),
   getstart: require('../Assets/getstartimg.jpg'),
   focus: require('../Assets/focus.png'),
   success: require('../Assets/lottie.json'),
-  loader:require('../Assets/animation.json')
+  loader:require('../Assets/animation.json'),
+  // background:require('../../components/Assets/background.jpg'),
+  security:require('../../components/Assets/security.png'),
+  admin:require('../Assets/Admin.png'),
+  superadmin:require('../Assets/Super_Admin.png'),
+  visitor:require('../Assets/visitor.png'),
+  img_back:require('../Assets/imageback.png'),
+  visit:require('../Assets/visitors.png'),
+  calender:require('../Assets/calendar.png'),
+  sun:require('../Assets/Suns.json')
 };

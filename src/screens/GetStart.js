@@ -27,7 +27,7 @@ export default function GetStart(props) {
   const navigation = useNavigation();
   return (
     <LinearGradient
-      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      colors={['#0C001D' , '#1E024E', '#593C6A']}
       style={{flex: 1}}>
           <StatusBar
         barStyle={'light-content'}
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 15,
     alignSelf: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#531955',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,

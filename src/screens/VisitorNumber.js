@@ -16,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import {icons} from '../components/Assets';
 import { Spinner } from '../components/Spinner';
+import AppHeader from '../components/AppHeader';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorNumber() {
@@ -36,6 +37,7 @@ export default function VisitorNumber() {
         barStyle={'light-content'}
         backgroundColor={Colors.dark_button}
       />
+      <AppHeader title={'Visitor Pass'} />
       <View style={styles.cardview}>
         <Card Date={'23/06/2024'} Time={'10:00 AM'} Number={'01'} />
         <Button text={'Save Record'} onPress={() => setModal(!modal)} />
@@ -75,9 +77,9 @@ export default function VisitorNumber() {
                 width: (Width / 80) * 9,
                 borderColor: '#357AB4',
                 borderRadius: 6,
-                borderWidth: 1,
+                // borderWidth: 1,
                 justifyContent: 'center',
-                backgroundColor: '#357AB4',
+                backgroundColor: '#411350',
               }}
               onPress={() => {
                 setModal(false), navigation.navigate('MainScreen');

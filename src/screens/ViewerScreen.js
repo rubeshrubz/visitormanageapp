@@ -106,6 +106,7 @@ export default function ViewerScreen() {
           style={{
             borderRadius: 10,
             borderWidth: 1,
+            borderColor:'#411350',
             height: '40%',
             width: '90%',
             justifyContent: 'center',
@@ -121,6 +122,7 @@ export default function ViewerScreen() {
           style={{
             borderRadius: 10,
             borderWidth: 1,
+            borderColor:'#411350',
             height: '40%',
             width: '90%',
             justifyContent: 'center',
@@ -140,7 +142,7 @@ export default function ViewerScreen() {
           alignItems: 'center',
         }}>
         <LinearGradient
-          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          colors={['#0C001D', '#1E024E', '#593C6A']}
           style={styles.subbutton}>
           <TouchableOpacity
             style={styles.subbutton}
@@ -185,9 +187,9 @@ export default function ViewerScreen() {
                 width: (Width / 80) * 9,
                 borderColor: '#357AB4',
                 borderRadius: 6,
-                borderWidth: 1,
+                // borderWidth: 1,
                 justifyContent: 'center',
-                backgroundColor: '#357AB4',
+                backgroundColor: '#411350',
               }}
               onPress={() => {
                 setModal(false), navigation.navigate('VisitorNumber');

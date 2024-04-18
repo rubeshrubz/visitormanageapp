@@ -18,6 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 import Colors from '../components/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { Spinner } from '../components/Spinner';
+import AppHeader from '../components/AppHeader';
 export default function VisitorDetailsScreen() {
   const navigation = useNavigation();
   const [firstname, setfirstname] = useState('');
@@ -58,8 +59,9 @@ export default function VisitorDetailsScreen() {
     <SafeAreaView style={styles.container}>
         {spin ? <Spinner /> : null}
       <View style={styles.button_cover}>
-        <Backbutton onPress={() => navigation.goBack()} />
-        <Text style={styles.profile_text}>Visitor's Details</Text>
+      <AppHeader title={'Visitors Details'} />
+        {/* <Backbutton onPress={() => navigation.goBack()} />
+        <Text style={styles.profile_text}>Visitor's Details</Text> */}
       </View>
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
@@ -106,7 +108,7 @@ export default function VisitorDetailsScreen() {
             placeholder={'In Time'}
           />
            <LinearGradient
-          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          colors={['#0C001D', '#1E024E', '#593C6A']}
           style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: Colors.dark_button,
+    color: '#411350',
     marginLeft: 20,
     marginVertical: 15,
   },
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
     // borderWidth:1,
   },
   button_cover: {
-    height: 50,
+    // height: 50,
     width: '100%',
     backgroundColor: 'lightgrey',
     alignItems: 'center',

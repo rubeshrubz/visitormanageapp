@@ -15,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {icons} from '../components/Assets/index';
 import Colors from '../components/Colors';
+import AppHeader from '../components/AppHeader';
 import { Spinner } from '../components/Spinner';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
@@ -83,8 +84,8 @@ export default function QRScanner() {
        {/* {spin ? <Spinner /> : null} */}
       <View style={{flex: 0.1, backgroundColor: '#fff', flexDirection: 'row'}}>
         <View style={styles.button_cover}>
-          <Backbutton onPress={() => navigation.goBack()} />
-          <Text style={styles.profile_text}>QR Scanner</Text>
+        <AppHeader title={'QR Scanner'}/>
+          {/* <Text style={styles.profile_text}>QR Scanner</Text> */}
         </View>
       </View>
 
@@ -112,7 +113,7 @@ export default function QRScanner() {
 
 const styles = StyleSheet.create({
   button_cover: {
-    height: 50,
+    // height: 50,
     width: '100%',
     backgroundColor: 'lightgrey',
     alignItems: 'center',

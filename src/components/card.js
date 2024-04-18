@@ -13,7 +13,7 @@ export default function Card(props) {
   return (
     <View style={styles.container}>
       <LinearGradient
-      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      colors={['#0C001D', '#1E024E', '#593C6A']}
       style={styles.container}>
       <Text style={styles.text}>Date: {Date}</Text>
       <Text style={styles.text}>Time: {Time}</Text>

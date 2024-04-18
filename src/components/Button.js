@@ -32,7 +32,7 @@ const Button = (props) => {
     
       <TouchableOpacity onPress={onPress}>
       <LinearGradient
-      colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+      colors={['#0C001D', '#1E024E', '#593C6A']}
       style={styles.buttonView}>
         <View
           style={[

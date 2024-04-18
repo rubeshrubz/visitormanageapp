@@ -10,6 +10,7 @@ import {
   Alert,
   Dimensions,
   StatusBar,
+  ImageBackground,
 } from 'react-native';
 import InputText from '../components/InputText';
 import {useNavigation} from '@react-navigation/native';
@@ -17,7 +18,9 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../components/Colors';
 import {Spinner} from '../components/Spinner';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {icons} from '../components/Assets';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 export default function VisitorRegisterScreen(props) {
@@ -38,8 +41,7 @@ export default function VisitorRegisterScreen(props) {
   useEffect(() => {
     setTimeout(() => {
       setPin(false);
-    },2000)
-    
+    }, 2000);
   }, []);
 
   const onChangeNumber = ({dialCode, phoneNumber}) => {
@@ -70,50 +72,88 @@ export default function VisitorRegisterScreen(props) {
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
         {spin ? <Spinner /> : null}
-
         <StatusBar
           barStyle={'light-content'}
           backgroundColor={Colors.dark_button}
         />
-        {/* <View style={styles.inputview}> */}
-        <Text style={styles.text}>Mobile Number</Text>
-        <InputText
-          onChangeNumber={text => onChangeNumber(text)}
-          value={username}
-          mobile={true}
-        />
-        <Text style={styles.text}>Password</Text>
-        <InputText
-          onChangeText={text => setpassword(text)}
-          value={password}
-          placeholder={'Password'}
-          visible={show}
-          secureText={secureText}
-          onPress={() => setshow(!show)}
-          secureTextEntry={show}
-        />
-        <LinearGradient
-          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
-          style={styles.subbutton}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('HomeScreen')}
-            style={styles.subbutton}>
-            <Text style={styles.subtext}>Login</Text>
-          </TouchableOpacity>
-        </LinearGradient>
-        {/* </View> */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={styles.registertext}>Don’t have an account? </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('RegisterScreen')}>
-            <Text style={styles.registertext2}>Sign up</Text>
-          </TouchableOpacity>
-        </View>
+        <ImageBackground source={icons.img_back} resizeMode="cover">
+          <LinearGradient
+            colors={['#0C001D', '#1E024E', '#593C6A']}
+            style={{
+              height: 250,
+              width: 250,
+              borderBottomRightRadius: 250,
+              justifyContent:'center'
+              // marginTop:50,
+              // marginLeft:-40
+            }}>
+            <Text
+              style={{
+                fontSize: 30,
+                fontWeight: 'bold',
+                color: '#fff',
+                marginLeft:20
+                // textAlign: 'center',
+              }}>
+              Login
+            </Text>
+          </LinearGradient>
+          {/* <View style={styles.inputview}> */}
+
+          <View style={styles.container}>
+            <View style={{height: '12%', justifyContent: 'center'}}>
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: 'bold',
+                  color: '#411350',
+                  // textAlign: 'center',
+                  margin: 20,
+                }}>
+                Welcome Back!
+              </Text>
+            </View>
+            <Text style={styles.text}>Mobile Number</Text>
+            <InputText
+              onChangeNumber={text => onChangeNumber(text)}
+              value={username}
+              mobile={true}
+            />
+            <Text style={styles.text}>Password</Text>
+            <InputText
+              onChangeText={text => setpassword(text)}
+              value={password}
+              placeholder={'Password'}
+              visible={show}
+              secureText={secureText}
+              onPress={() => setshow(!show)}
+              secureTextEntry={show}
+            />
+
+            <LinearGradient
+              colors={['#0C001D', '#1E024E', '#593C6A']}
+              style={styles.subbutton}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('HomeScreen')}
+                style={styles.subbutton}>
+                <Text style={styles.subtext}>Login</Text>
+              </TouchableOpacity>
+            </LinearGradient>
+            {/* </View> */}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={styles.registertext}>Don’t have an account? </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('RegisterScreen')}>
+                <Text style={styles.registertext2}>Sign up</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ImageBackground>
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
@@ -122,13 +162,13 @@ export default function VisitorRegisterScreen(props) {
 const styles = StyleSheet.create({
   container: {
     height: (Height / 3) * 3,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    // backgroundColor: 'green',
+    // justifyContent: 'center',
   },
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: Colors.dark_button,
+    color: '#1E024E',
     marginLeft: 22,
     marginVertical: 10,
   },
@@ -160,6 +200,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // marginVertical: 10,
     fontSize: 16,
-    color: Colors.dark_button,
+    color: '#1E024E',
   },
 });

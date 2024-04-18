@@ -148,7 +148,7 @@ export default function RegisterScreen() {
             placeholder={'Enter your role in your company'}
           />
            <LinearGradient
-          colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+          colors={['#0C001D', '#1E024E', '#593C6A']}
           style={styles.subbutton}>
           <TouchableOpacity
             onPress={() => {
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: '500',
-    color: Colors.dark_button,
+    color: '#411350',
     marginLeft: 20,
     marginVertical: 15,
   },
