@@ -182,16 +182,16 @@ export default function EditProfile() {
 
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    },2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   },2000)
     
-  }, []);
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      {spin ? <Spinner /> : null}
+      {/* {spin ? <Spinner /> : null} */}
       <AppHeader title={'Edit Profile'}/>
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>

@@ -25,18 +25,22 @@ const MainScreen = props => {
     AsyncStorage.setItem('@MySuperStore:key', 'Admin');
     navigation.navigate('Login');
   };
-
+  const onClickSuperAdmin = () => {
+    AsyncStorage.setItem('@MySuperStore:key', 'SuperAdmin');
+    navigation.navigate('Login');
+  };
+ 
   const onClickSecurity = () => {
     AsyncStorage.setItem('@MySuperStore:key', 'Security');
     navigation.navigate('Login');
   };
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   }, 2000);
+  // }, []);
 
   const [scaleAnim] = useState(new Animated.Value(0));
 
@@ -95,7 +99,7 @@ const MainScreen = props => {
               item.id == '1'
                 ? onClickBuildingAdmin()
                 : item.id == '2'
-                ? onClickBuildingAdmin()
+                ? onClickSuperAdmin()
                 : item.id == '3'
                 ? navigation.navigate('QRScanner')
                 : item.id == '4'
@@ -131,6 +135,10 @@ const MainScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+       <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={Colors.white}
+        />
       <LinearGradient
         colors={['#0C001D', '#1E024E', '#593C6A']}
         start={{x: 0, y: 1}}

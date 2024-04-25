@@ -47,7 +47,7 @@ import ApprovalScreen from './src/screens/ApprovalScreen';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import ViewDetailScreen from './src/screens/ViewDetailScreen';
-import Webscreen from './src/screens/webscreen';
+import webscreen from './src/screens/webscreen';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Width = Dimensions.get('window').width;
@@ -59,7 +59,28 @@ const DrawerContents = props => {
   const [images, SetImages] = useState('');
   const asyncc = '@MySuperStore:key';
   const [demo, setdemo] = useState('');
-  const data = [
+
+ const superData = [
+  {
+    id: '1',
+    title: 'Building Admin Management',
+  },
+  {
+    id: '2',
+    title: 'Subscription Management',
+  },
+  {
+    id: '3',
+    title: 'Profile Management',
+  },
+  {
+    id: '4',
+    title: 'Logout',
+  },
+
+ ]
+
+  const buildingData = [
     {
       id: '1',
       title: 'Staff Management',
@@ -91,6 +112,18 @@ const DrawerContents = props => {
     },
     {
       id: '8',
+      title: 'Role And Permission Management',
+    },
+    {
+      id: '9',
+      title: 'Building Management',
+    },
+    {
+      id: '10',
+      title: 'Update Building Setup',
+    },
+    {
+      id: '11',
       title: 'Logout',
     },
   ];
@@ -130,10 +163,17 @@ const DrawerContents = props => {
       retrieveData();
     }
   }, [demo]);
-  const onClickDrawer = item => {
+  const onClickBuildingDrawer = item => {
     item.id == 5
       ? navigation.navigate('EditProfile')
-      : item.id == 8
+      : item.id == 11
+      ? setModalVisible(true)
+      : null;
+  };
+  const onClickSuperDrawer = item => {
+    item.id == 3
+      ? navigation.navigate('EditProfile')
+      : item.id == 4
       ? setModalVisible(true)
       : null;
   };
@@ -220,7 +260,7 @@ const DrawerContents = props => {
     <LinearGradient
       colors={['#0C001D', '#1E024E', '#593C6A']}
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <View style={{flex: 0.5, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity onPress={() => openFilePicker()}>
           <Image
             style={styles.avatar}
@@ -242,7 +282,7 @@ const DrawerContents = props => {
         </Text>
       </View>
       <FlatList
-        data={demo == 'Admin' ? data : SecurityData}
+        data={demo == 'Admin' ? buildingData : demo == 'SuperAdmin' ? superData : SecurityData}
         style={{margin: 10}}
         renderItem={({item}) => (
           <View
@@ -257,8 +297,12 @@ const DrawerContents = props => {
             <TouchableOpacity
               onPress={() =>
                 demo == 'Admin'
-                  ? onClickDrawer(item)
-                  : onClickSecurityDrawer(item)
+                  ? onClickBuildingDrawer(item)
+                  : demo == 'SuperAdmin' 
+                  ? onClickSuperDrawer(item) 
+                  : demo == 'Security'
+                  ? onClickSecurityDrawer(item)
+                  : null
               }>
               <Text
                 fontSize={12}
@@ -290,7 +334,7 @@ const DrawerContents = props => {
             </Text>
             <View style={{flexDirection: 'row'}}>
               <LinearGradient
-                colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+                colors={['#0C001D', '#1E024E', '#593C6A']}
                 style={styles.subbutton}>
                 <TouchableOpacity
                   onPress={() => {
@@ -301,7 +345,7 @@ const DrawerContents = props => {
                 </TouchableOpacity>
               </LinearGradient>
               <LinearGradient
-                colors={['#2B8ADD', '#2E44A2', '#2D2B89']}
+                colors={['#0C001D', '#1E024E', '#593C6A']}
                 style={styles.subbutton}>
                 <TouchableOpacity
                   onPress={() => {
@@ -384,6 +428,7 @@ function App(props) {
           <Stack.Screen name="ViewReport" component={ViewReport} />
           <Stack.Screen name="ApprovalScreen" component={ApprovalScreen} />
           <Stack.Screen name="ViewDetailScreen" component={ViewDetailScreen} />
+          {/* <Stack.Screen name="Webscreen" component={webscreen} /> */}
         </Stack.Navigator>
         <SnackBar />
       </NavigationContainer>
@@ -394,13 +439,14 @@ function App(props) {
 export default App;
 const styles = StyleSheet.create({
   avatar: {
-    width: (Width / 19) * 5,
+    width: (Width / 19) * 4.8,
     height: (Height / 40) * 5,
     borderRadius: Width / 3,
     borderColor: '#242760',
     flexDirection: 'row',
     borderWidth: 1,
     backgroundColor: '#fff',
+    margin:10
   },
   cameras: {
     width: 25,
@@ -413,7 +459,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    // marginTop: 22,
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
   modalView: {

@@ -57,17 +57,17 @@ export default function AttachFile() {
 
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   }, 2000);
+  // }, []);
   return (
     <SafeAreaView style={styles.container}>
-      {spin ? <Spinner /> : null}
+      {/* {spin ? <Spinner /> : null} */}
       <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={Colors.dark_button}
+        barStyle={'dark-content'}
+        backgroundColor={Colors.white}
       />
       <View style={{flex: 0.25}}>
         <View style={styles.button_cover}>

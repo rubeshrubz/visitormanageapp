@@ -31,6 +31,7 @@ export default function VisitorDetailsScreen() {
   const [intime, setintime] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dialcode, Setdialcode] = useState('');
+  const [date, setdate] = useState('');
 
   useEffect(() => {
     display();
@@ -48,16 +49,16 @@ export default function VisitorDetailsScreen() {
   };
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    },2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   },2000)
     
-  }, []);
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-        {spin ? <Spinner /> : null}
+        {/* {spin ? <Spinner /> : null} */}
       <View style={styles.button_cover}>
       <AppHeader title={'Visitors Details'} />
         {/* <Backbutton onPress={() => navigation.goBack()} />
@@ -71,11 +72,11 @@ export default function VisitorDetailsScreen() {
             value={names?.firstname}
             placeholder={'Name'}
           />
-          <Text style={styles.text}>Moblie Number</Text>
+          <Text style={styles.text}>Mobile Number</Text>
           <InputText
             onChangeText={text => setfirstname(text)}
             value={names?.mobilenumber}
-            placeholder={'Name'}
+            placeholder={'Mobile Number'}
           />
           <Text style={styles.text}>Civil ID</Text>
           <InputText
@@ -106,6 +107,12 @@ export default function VisitorDetailsScreen() {
             onChangeText={text => setintime(text)}
             value={names?.intime}
             placeholder={'In Time'}
+          />
+          <Text style={styles.text}>Visited Date</Text>
+          <InputText
+            onChangeText={text => setdate(text)}
+            value={names?.date}
+            placeholder={'Visited Date'}
           />
            <LinearGradient
           colors={['#0C001D', '#1E024E', '#593C6A']}

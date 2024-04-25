@@ -55,15 +55,15 @@ export default function ViewerScreen() {
   };
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   }, 2000);
+  // }, []);
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      {spin ? <Spinner /> : null}
+      {/* {spin ? <Spinner /> : null} */}
       <View style={{flex: 0.1, backgroundColor: '#fff', flexDirection: 'row'}}>
         {/* <View
           style={{

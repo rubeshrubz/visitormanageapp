@@ -24,18 +24,18 @@ export default function VisitorNumber() {
   const navigation = useNavigation();
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    },2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   },2000)
     
-  }, []);
+  // }, []);
   return (
     <SafeAreaView style={styles.container}>
-         {spin ? <Spinner /> : null}
+         {/* {spin ? <Spinner /> : null} */}
       <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={Colors.dark_button}
+        barStyle={'dark-content'}
+        backgroundColor={Colors.white}
       />
       <AppHeader title={'Visitor Pass'} />
       <View style={styles.cardview}>

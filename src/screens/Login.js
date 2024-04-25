@@ -38,11 +38,11 @@ export default function VisitorRegisterScreen(props) {
 
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   }, 500);
+  // }, []);
 
   const onChangeNumber = ({dialCode, phoneNumber}) => {
     Setdialcode(dialCode);
@@ -71,11 +71,8 @@ export default function VisitorRegisterScreen(props) {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={styles.container}>
-        {spin ? <Spinner /> : null}
-        <StatusBar
-          barStyle={'light-content'}
-          backgroundColor={Colors.dark_button}
-        />
+        {/* {spin ? <Spinner /> : null} */}
+        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.white} />
         <ImageBackground source={icons.img_back} resizeMode="cover">
           <LinearGradient
             colors={['#0C001D', '#1E024E', '#593C6A']}
@@ -83,7 +80,7 @@ export default function VisitorRegisterScreen(props) {
               height: 250,
               width: 250,
               borderBottomRightRadius: 250,
-              justifyContent:'center'
+              justifyContent: 'center',
               // marginTop:50,
               // marginLeft:-40
             }}>
@@ -92,7 +89,7 @@ export default function VisitorRegisterScreen(props) {
                 fontSize: 30,
                 fontWeight: 'bold',
                 color: '#fff',
-                marginLeft:20
+                marginLeft: 20,
                 // textAlign: 'center',
               }}>
               Login
@@ -129,7 +126,11 @@ export default function VisitorRegisterScreen(props) {
               onPress={() => setshow(!show)}
               secureTextEntry={show}
             />
-
+            <TouchableOpacity style={{width:'95%',alignItems:'flex-end',margin:5}}>
+            <Text style={{fontWeight: '500', color: '#411350'}}>
+              Forgot Password ?
+            </Text>
+            </TouchableOpacity>
             <LinearGradient
               colors={['#0C001D', '#1E024E', '#593C6A']}
               style={styles.subbutton}>

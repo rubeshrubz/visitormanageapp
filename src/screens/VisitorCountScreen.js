@@ -21,15 +21,15 @@ const VisitorCountScreen = () => {
 
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    },2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   },2000)
     
-  }, []);
+  // }, []);
   return (
     <SafeAreaView>
-      {spin ? <Spinner /> : null}
+      {/* {spin ? <Spinner /> : null} */}
       <View style={styles.container}>
         <LinearGradient
           colors={['#2B8ADD', '#2E44A2', '#2D2B89']}

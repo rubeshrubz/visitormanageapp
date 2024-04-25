@@ -79,12 +79,12 @@ export default function RegisterScreen() {
   // };
   const [spin, setPin] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPin(false);
-    },2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPin(false);
+  //   },2000)
     
-  }, []);
+  // }, []);
   const asyncc = '@MySuperStore:key';
   const [demo, setdemo] = useState('');
 
@@ -107,12 +107,12 @@ export default function RegisterScreen() {
   }, [demo]);
   return (
     <SafeAreaView style={styles.container}>
-     {spin ? <Spinner /> : null}
+     {/* {spin ? <Spinner /> : null} */}
         <StatusBar
-          barStyle={'light-content'}
-          backgroundColor={Colors.dark_button}
+          barStyle={'dark-content'}
+          backgroundColor={Colors.white}
         />
-           {demo === 'Admin' ? 
+           {demo === 'Admin' || demo === 'Super Admin'?
        <AppHeader title={'Admin Register'}/>: <AppHeader title={'Security Register'}/>}
       <ScrollView>
         <KeyboardAvoidingView style={{flex: 1}}>
