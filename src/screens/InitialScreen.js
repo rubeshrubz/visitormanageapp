@@ -2,13 +2,17 @@ import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
 import {icons} from '../components/Assets';
 import SplashScreen from 'react-native-splash-screen';
+import { useNavigation } from '@react-navigation/native';
 
-const InitialScreen = ({navigation}) => {
+const InitialScreen = () => {
+
+const navigation = useNavigation();
+
   useEffect(() => {
     SplashScreen.hide();
-    setTimeout(() => {
+    setTimeout(()=>{
       navigation.navigate('MainScreen');
-    }, 1000);
+    },1000)
   }, []);
   return (
     <View style={styles.container}>

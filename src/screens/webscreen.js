@@ -744,3 +744,72 @@
 // };
 
 // //#endregion Utility
+// import React, { useState, useEffect } from 'react';
+// import { View, Button } from 'react-native';
+// import Sound from 'react-native-sound';
+
+// const webscreen = () => {
+//   const [sound, setSound] = useState(null);
+
+//   useEffect(() => {
+//     // Initialize sound file
+//     Sound.setCategory('Playback');
+//     const soundObject = new Sound('sound.mp3', Sound.MAIN_BUNDLE, (error) => {
+//       if (error) {
+//         console.log('failed to load the sound', error); // Log the error
+//         return;
+//       }
+//       // Success initializing sound
+//       setSound(soundObject);
+//     });
+
+//     // Cleanup function
+//     return () => {
+//       // Release the sound object when component is unmounted
+//       if (sound) {
+//         sound.release();
+//       }
+//     };
+//   }, []);
+
+//   const playSound = () => {
+//     if (sound) {
+//       sound.play((success) => {
+//         if (success) {
+//           console.log('successfully finished playing');
+//         } else {
+//           console.log('playback failed due to audio decoding errors');
+//         }
+//       });
+//     } else {
+//       console.log('Sound object not initialized yet');
+//     }
+//   };
+
+//   const pauseSound = () => {
+//     if (sound) {
+//       sound.pause();
+//     } else {
+//       console.log('Sound object not initialized yet');
+//     }
+//   };
+
+//   const stopSound = () => {
+//     if (sound) {
+//       sound.stop();
+//       sound.setCurrentTime(0); // Reset sound to start
+//     } else {
+//       console.log('Sound object not initialized yet');
+//     }
+//   };
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Button title="Play Sound" onPress={playSound} />
+//       <Button title="Pause Sound" onPress={pauseSound} />
+//       <Button title="Stop Sound" onPress={stopSound} />
+//     </View>
+//   );
+// };
+
+// export default webscreen;

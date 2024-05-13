@@ -395,7 +395,7 @@ function App(props) {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{headerShown: false}}
-          initialRouteName="InitialScreen">
+          initialRouteName="MainScreen">
           {/* <Stack.Screen name="GetStart" component={GetStart} /> */}
           <Stack.Screen name="QRScanner" component={QRScanner} />
           <Stack.Screen name="InitialScreen" component={InitialScreen} />
